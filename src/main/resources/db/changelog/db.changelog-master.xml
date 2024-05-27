@@ -6,6 +6,17 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
 
-    <!--   <include file="db/changelog/db.changelog-1.0.xml"/>  -->
+    <changeSet id="5" author="adil">
+        <addColumn tableName="entete_fact">
+            <column name="created_date" type="date">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+        <sql>
+            UPDATE entete_fact
+            SET created_date = '2023-12-06'
+            WHERE created_date IS NULL;
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>

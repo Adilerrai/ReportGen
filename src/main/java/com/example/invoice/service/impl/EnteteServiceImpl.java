@@ -15,8 +15,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+import java.time.LocalDate;
+import java.util.Date;
+
+import static java.time.LocalDate.now;
+
+
 @Service
 public class EnteteServiceImpl implements EnteteService {
+
+
+
+
+;
+
+
 
     private EnteteRepository enteteRepository;
 
@@ -51,9 +65,11 @@ public class EnteteServiceImpl implements EnteteService {
 
     @Override
     public EnteteFactDTO saveEntete(EnteteFactDTO enteteDTO) {
-        EnteteFact enteteFact = enteteMapper.dtoToEntity (enteteDTO);
 
-        // Save the DetFacture instances before saving the EnteteFact
+
+        EnteteFact enteteFact = enteteMapper.dtoToEntity (enteteDTO);
+        enteteFact.setCreatedDate(java.sql.Date.valueOf(now()));
+
         for (DetFacture detFacture : enteteFact.getDetFactures()) {
             detFactureRepository.save(detFacture);
         }
@@ -70,18 +86,17 @@ public class EnteteServiceImpl implements EnteteService {
     @Override
     public EnteteFactDTO updateEntete(EnteteFactDTO enteteDTO) {
         EnteteFact enteteFact = enteteRepository.findById(enteteDTO.getId()).get();
-        if(enteteFact != null) {
-            enteteFact.setClient(enteteDTO.getClient());
-            enteteFact.setNumeroFacture(enteteDTO.getNumeroFacture());
-            enteteFact.setDateFacture(enteteDTO.getDateFacture());
-            enteteFact.setModePaiement(enteteDTO.getModePaiement());
-            enteteFact.setStatut(enteteDTO.getStatut());
-            enteteFact.setDetFactures(enteteDTO.getDetFactures());
-            enteteRepository.save(enteteFact);
-            return enteteMapper.entityToDto(enteteFact);
+        if(enteteFact == null) {
+                throw new RuntimeException("EnteteFact not found");
         }
-        return null;
-
+        enteteFact.setClient(enteteDTO.getClient());
+        enteteFact.setNumeroFacture(enteteDTO.getNumeroFacture());
+        enteteFact.setDateFacture(enteteDTO.getDateFacture());
+        enteteFact.setModePaiement(enteteDTO.getModePaiement());
+        enteteFact.setStatut(enteteDTO.getStatut());
+        enteteFact.setDetFactures(enteteDTO.getDetFactures());
+        enteteRepository.save(enteteFact);
+        return enteteMapper.entityToDto(enteteFact);
     }
 
     @Override
@@ -92,5 +107,10 @@ public class EnteteServiceImpl implements EnteteService {
     @Override
     public Page<EnteteFact> searchEnteteByCriteriaHaving(EnteteRechercheDTO enteteFactDTO, Pageable pageable) {
         return enteteCriteriaRepo.findByCriteriaHaving(enteteFactDTO, pageable);
+    }
+
+    @Override
+    public EnteteFact findEnteteById(Long id) {
+        return null;
     }
 }

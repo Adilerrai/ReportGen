@@ -4,6 +4,7 @@ package com.example.invoice.model;
 import com.example.invoice.enums.Status;
 import jakarta.persistence.*;
 
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class EnteteFact {
 
     private String modePaiement;
 
+    private  Date createdDate;
+
     private Status statut;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -29,8 +32,13 @@ public class EnteteFact {
     @OneToMany(fetch = FetchType.EAGER)
     private List<DetFacture> detFactures;
 
+
+
+
+
     public EnteteFact() {
     }
+
 
     public EnteteFact(Long id, Long numeroFacture, Date dateFacture, String modePaiement, Status statut, Client client, List<DetFacture> detFactures) {
         this.id = id;
@@ -42,6 +50,16 @@ public class EnteteFact {
         this.detFactures = detFactures;
     }
 
+
+
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
 
     public Long getNumeroFacture() {
         return numeroFacture;

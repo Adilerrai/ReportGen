@@ -19,6 +19,8 @@ public class EnteteFactDTO {
 
     private String modePaiement;
 
+    private Date createdDate;
+
     private Status statut;
 
     @ManyToOne
@@ -67,6 +69,14 @@ public class EnteteFactDTO {
 
     public Status getStatut() {
         return statut;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public void setStatut(Status statut) {
