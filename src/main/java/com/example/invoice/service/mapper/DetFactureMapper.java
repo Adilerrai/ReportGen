@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring", uses = {})
 public interface DetFactureMapper {
 
-    public abstract DetFactureDTO entityToDto(DetFacture detFacture);
-    public abstract DetFacture dtoToEntity(DetFactureDTO detFactureDTO);
+        DetFactureDTO entityToDto(DetFacture detFacture);
+        DetFacture dtoToEntity(DetFactureDTO detFactureDTO);
 
 }

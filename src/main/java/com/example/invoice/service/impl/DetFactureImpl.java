@@ -8,6 +8,9 @@ import com.example.invoice.service.mapper.DetFactureMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+
+
 @Service
 public class DetFactureImpl implements DetFactService {
 
@@ -20,6 +23,9 @@ public class DetFactureImpl implements DetFactService {
         this.detFactureMapper = detFactureMapper;
     }
 
+
+
+
     @Override
     public List<DetFactureDTO> getAllDetFacts() {
         List<DetFacture> detFactures = detFactureRepository.findAll();
@@ -27,11 +33,16 @@ public class DetFactureImpl implements DetFactService {
         return detFactureDTOS;
     }
 
+
+
     @Override
     public DetFactureDTO getDetFactById(Long id) {
         DetFacture detFacture = detFactureRepository.findById(id).get();
         return detFactureMapper.entityToDto(detFacture);
     }
+
+
+
 
     @Override
     public DetFactureDTO saveDetFact(DetFactureDTO detFactDTO) {
@@ -39,6 +50,8 @@ public class DetFactureImpl implements DetFactService {
         detFactureRepository.save(detFacture);
         return detFactureMapper.entityToDto(detFacture);
     }
+
+
 
     @Override
     public void deleteDetFact(Long id) {

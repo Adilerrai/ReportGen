@@ -16,8 +16,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException e) {
         List<String> errorMessages = e.getConstraintViolations().stream()
-                .map(violation -> violation.getMessage())
-                .collect(Collectors.toList());
+                .map(violation -> violation.getMessage()).toList();
         return new ResponseEntity<>(errorMessages, HttpStatus.BAD_REQUEST);
     }
 

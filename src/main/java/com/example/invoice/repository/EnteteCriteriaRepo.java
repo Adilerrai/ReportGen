@@ -11,4 +11,5 @@ public interface EnteteCriteriaRepo {
 
     Page<EnteteFact> findByCriteria(EnteteRechercheDTO enteteRechercheDTO, Pageable pageable);
 
+    Page<EnteteFact> findByCriteriaHaving(EnteteRechercheDTO enteteRechercheDTO, Pageable pageable);
 }

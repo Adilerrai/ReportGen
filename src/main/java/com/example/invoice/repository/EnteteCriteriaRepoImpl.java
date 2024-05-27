@@ -2,6 +2,7 @@ package com.example.invoice.repository;
 
 
 import com.example.invoice.dto.EnteteRechercheDTO;
+import com.example.invoice.model.DetFacture;
 import com.example.invoice.model.EnteteFact;
 import com.example.invoice.model.EnteteFact_;
 import jakarta.persistence.EntityManager;
@@ -29,9 +30,9 @@ public class EnteteCriteriaRepoImpl implements EnteteCriteriaRepo {
     private Predicate[] generateWhere(CriteriaBuilder cb, Root<EnteteFact> rootEntete, EnteteRechercheDTO enteteRechercheDTO) {
         List<Predicate> predicates = new ArrayList<>();
 
-//
-//
-//
+
+
+
         if (enteteRechercheDTO.getStatut()!=null){
             predicates.add(cb.equal(rootEntete.get(EnteteFact_.statut), enteteRechercheDTO.getStatut()));
         }
@@ -51,8 +52,8 @@ if (enteteRechercheDTO.getDateFacture() != null) {
             predicates.add(cb.equal(rootEntete.get("client"), enteteRechercheDTO.getClient()));
         }
 
-    if (enteteRechercheDTO.getDetFactures() != null) {
-            predicates.add(cb.equal(rootEntete.get("detFactures"), enteteRechercheDTO.getDetFactures() ));
+        if (enteteRechercheDTO.getDetFactures() != null && rootEntete.get("detFactures") != null) {
+            predicates.add(cb.equal(rootEntete.get("detFactures"), enteteRechercheDTO.getDetFactures()));
         }
 
         return predicates.toArray(new Predicate[0]);
@@ -74,6 +75,45 @@ if (enteteRechercheDTO.getDateFacture() != null) {
         List<EnteteFact> results = query.getResultList();
 
 
+
+        // count lignes
+        CriteriaQuery<Long> cqcount = cb.createQuery(Long.class);
+        Root<EnteteFact> enteteFactCount = cqcount.from(EnteteFact.class);
+        cqcount.select(cb.count(enteteFactCount));
+        Predicate[] predicates2 = this.generateWhere(cb, enteteFactCount, enteteRechercheDTO);
+        cqcount.where(predicates2);
+        Long totalCount = em.createQuery(cqcount).getSingleResult();
+
+        // Return the results as a Page
+        return new PageImpl<>(results, pageable, totalCount);
+    }
+
+
+    @Override
+    public Page<EnteteFact> findByCriteriaHaving(EnteteRechercheDTO enteteRechercheDTO, Pageable pageable) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<EnteteFact> cq = cb.createQuery(EnteteFact.class);
+        Root<EnteteFact> enteteFact = cq.from(EnteteFact.class);
+
+        Predicate[] predicates = this.generateWhere(cb, enteteFact, enteteRechercheDTO);
+
+        Join<EnteteFact, DetFacture> detFacturesJoin = enteteFact.join("detFactures", JoinType.INNER);
+        Expression<Long> detFacturesCount = cb.count(detFacturesJoin);
+        // Add a HAVING clause
+        Expression<Long> five = cb.literal(1L);
+        cq.having(cb.greaterThan(detFacturesCount, five));
+        // Add an ORDER BY clause
+        cq.orderBy(cb.asc(enteteFact.get(EnteteFact_.numeroFacture)));
+
+        // Add a GROUP BY clause
+        cq.groupBy(enteteFact);
+
+        cq.where(predicates);
+        cq.select(enteteFact);
+
+        // Execute the query and get the results
+        TypedQuery<EnteteFact> query = em.createQuery(cq);
+        List<EnteteFact> results = query.getResultList();
 
         // count lignes
         CriteriaQuery<Long> cqcount = cb.createQuery(Long.class);

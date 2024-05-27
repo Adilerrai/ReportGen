@@ -37,6 +37,7 @@ public class ClientServiceImpl implements ClientService  {
 
     @Override
     public ClientDTO saveClient(ClientDTO clientDTO) {
+
         Client client = clientMapper.dtoToEntity(clientDTO);
         clientRepository.save(client);
         return clientMapper.entityToDto(client);
@@ -63,4 +64,13 @@ public class ClientServiceImpl implements ClientService  {
             return null;
         }
     }
+
+    @Override
+    public Client newSaveClient(Client client) {
+
+        return clientRepository.save(client);
+
+    }
+
+
 }

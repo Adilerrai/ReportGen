@@ -7,6 +7,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
 
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -37,7 +38,11 @@ public class ReportService {
 
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(enteteList);
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("createdBy", "test");
+            BigDecimal totalAmount = entete.getDetFactures().stream()
+                    .filter(detFacture -> detFacture.getMontantTotalParProduit() != null)
+                    .map(detFacture -> detFacture.getMontantTotalParProduit())
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            parameters.put("total", totalAmount);
 
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jrBeanCollectionDataSource);

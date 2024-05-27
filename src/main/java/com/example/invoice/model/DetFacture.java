@@ -36,6 +36,15 @@ public class DetFacture {
     }
 
 
+
+
+
+
+
+
+
+
+
     public DetFacture() {
     }
 
@@ -53,16 +62,16 @@ public class DetFacture {
 
     public void setQuantite(Long quantite) {
         this.quantite = quantite;
+        calculateMontantTotalParProduit();
     }
-
     public BigDecimal getPrixUnitaire() {
         return prixUnitaire;
     }
 
     public void setPrixUnitaire(BigDecimal prixUnitaire) {
         this.prixUnitaire = prixUnitaire;
+        calculateMontantTotalParProduit();
     }
-
     public Produit getProduit() {
         return produit;
     }
@@ -85,5 +94,12 @@ public class DetFacture {
 
     public void setFacture(EnteteFact facture) {
         this.facture = facture;
+    }
+
+
+    private void calculateMontantTotalParProduit() {
+        if (this.prixUnitaire != null && this.quantite != null) {
+            this.montantTotalParProduit = this.prixUnitaire.multiply(BigDecimal.valueOf(this.quantite));
+        }
     }
 }

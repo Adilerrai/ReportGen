@@ -1,10 +1,16 @@
 package com.example.invoice.service.impl;
 
 import com.example.invoice.dto.EnteteFactDTO;
+import com.example.invoice.dto.EnteteRechercheDTO;
+import com.example.invoice.model.DetFacture;
 import com.example.invoice.model.EnteteFact;
+import com.example.invoice.repository.DetFactureRepository;
+import com.example.invoice.repository.EnteteCriteriaRepo;
 import com.example.invoice.repository.EnteteRepository;
 import com.example.invoice.service.EnteteService;
 import com.example.invoice.service.mapper.EnteteMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +22,17 @@ public class EnteteServiceImpl implements EnteteService {
 
     private EnteteMapper enteteMapper;
 
-    public EnteteServiceImpl(EnteteRepository enteteRepository, EnteteMapper enteteMapper) {
+    private EnteteCriteriaRepo enteteCriteriaRepo;
+
+    private DetFactureRepository detFactureRepository;
+
+
+
+    public EnteteServiceImpl(EnteteRepository enteteRepository, DetFactureRepository detFactureRepository, EnteteMapper enteteMapper, EnteteCriteriaRepo enteteCriteriaRepo) {
         this.enteteRepository = enteteRepository;
         this.enteteMapper = enteteMapper;
+        this.enteteCriteriaRepo = enteteCriteriaRepo;
+        this.detFactureRepository = detFactureRepository;
     }
 
 
@@ -37,11 +51,17 @@ public class EnteteServiceImpl implements EnteteService {
 
     @Override
     public EnteteFactDTO saveEntete(EnteteFactDTO enteteDTO) {
-        EnteteFact enteteFact = enteteMapper.dtoToEntity(enteteDTO);
-        enteteRepository.save(enteteFact);
-        return enteteMapper.entityToDto(enteteFact);
-    }
+        EnteteFact enteteFact = enteteMapper.dtoToEntity (enteteDTO);
 
+        // Save the DetFacture instances before saving the EnteteFact
+        for (DetFacture detFacture : enteteFact.getDetFactures()) {
+            detFactureRepository.save(detFacture);
+        }
+
+        enteteFact = enteteRepository.save(enteteFact);
+
+        return   enteteMapper.entityToDto(enteteFact);
+    }
     @Override
     public void deleteEntete(Long id) {
         enteteRepository.deleteById(id);
@@ -62,5 +82,15 @@ public class EnteteServiceImpl implements EnteteService {
         }
         return null;
 
+    }
+
+    @Override
+    public Page<EnteteFact> searchEnteteByCriteria(EnteteRechercheDTO enteteFactDTO , Pageable pageable ) {
+        return  enteteCriteriaRepo.findByCriteria(enteteFactDTO , pageable);
+    }
+
+    @Override
+    public Page<EnteteFact> searchEnteteByCriteriaHaving(EnteteRechercheDTO enteteFactDTO, Pageable pageable) {
+        return enteteCriteriaRepo.findByCriteriaHaving(enteteFactDTO, pageable);
     }
 }
