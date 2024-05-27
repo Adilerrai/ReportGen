@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2 using JasperReports Library version 6.21.2 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="Invoice" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="30" bottomMargin="30" uuid="1c81cef1-8b6a-471a-b1b4-8e6d6933400a">
+
+    <!-- Properties -->
+    <property name="ireport.jasperserver.url" value="http://127.0.0.1:8080/jasperserver-pro/"/>
+    <property name="ireport.jasperserver.user" value="jasperadmin"/>
+    <property name="ireport.jasperserver.report.resource" value="/public/Christoph/Invoice_files/Invoice_"/>
+    <property name="ireport.jasperserver.reportUnit" value="/public/Christoph/Invoice"/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+
+    <!-- Styles -->
+    <style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+
+    <!-- Parameters -->
+    <parameter name="CollectionBeanParam" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+
+    <!-- Fields -->
+    <field name="id" class="java.lang.Integer"/>
+    <field name="numeroFacture" class="java.lang.Long"/>
+    <field name="dateFacture" class="java.util.Date"/>
+    <field name="modePaiement" class="java.lang.String"/>
+    <field name="statut" class="java.lang.String"/>
+    <field name="client.email" class="java.lang.String"/>
+    <field name="client.telephone" class="java.lang.String"/>
+
+    <!-- Title Band -->
+    <title>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="30" uuid="e71d0b4d-9077-4098-927d-3cc9a0c7e348"/>
+                <textElement textAlignment="Center">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Invoice]]></text>
+            </staticText>
+        </band>
+    </title>
+
+    <!-- Page Header Band -->
+    <pageHeader>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="0" width="150" height="20" uuid="e82d7a4e-2329-4b42-a8c7-792769c02b29"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Invoice Number:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="150" y="0" width="100" height="20" uuid="22c1a1e7-41b4-4ef8-9d9e-4ed8f82f7b12"/>
+                <textFieldExpression><![CDATA[$F{numeroFacture}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="0" y="20" width="150" height="20" uuid="a9cfb8dc-1b88-4d84-b8c2-b22a77e02d8d"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Invoice Date:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="150" y="20" width="100" height="20" uuid="d287a29a-4735-48e7-95fc-8c01b0c2262b"/>
+                <textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dateFacture})]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+
+    <!-- Detail Band -->
+    <detail>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="0" width="150" height="20" uuid="2f9c10ea-9277-4f21-91bb-7f5c058c4865"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Client Email:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="150" y="0" width="200" height="20" uuid="56fa07cc-0f8b-4f80-8429-2e43219f7c4d"/>
+                <textFieldExpression><![CDATA[$F{client.email}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="0" y="20" width="150" height="20" uuid="e5db1e04-7368-42a7-a78e-0a4d8c3d9f62"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Client Phone:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="150" y="20" width="200" height="20" uuid="4b3a61e2-fd98-4870-995a-02808133e600"/>
+                <textFieldExpression><![CDATA[$F{client.telephone}]]></textFieldExpression>
+            </textField>
+        </band>
+
+        <band height="180">
+            <subreport>
+                <reportElement x="0" y="0" width="555" height="180" uuid="30335697-484a-433d-9d23-736959e57067"/>
+                <subreportExpression><![CDATA["detFacturesSnubReport.jrxml"]]></subreportExpression>
+                <datasetRun subDataset="detFacturesDataset">
+                    <dataSourceExpression><![CDATA[$P{CollectionBeanParam}]]></dataSourceExpression>
+                </datasetRun>
+            </subreport>
+        </band>
+    </detail>
+</jasperReport>
