@@ -57,11 +57,16 @@ public class EnteteServiceImpl implements EnteteService {
         return enteteFactDTOS;
     }
 
+
+
+
     @Override
     public EnteteFactDTO getEnteteById(Long id) {
         EnteteFact enteteFact = enteteRepository.findById(id).get();
         return enteteMapper.entityToDto(enteteFact);
     }
+
+
 
     @Override
     public EnteteFactDTO saveEntete(EnteteFactDTO enteteDTO) {
@@ -78,10 +83,18 @@ public class EnteteServiceImpl implements EnteteService {
 
         return   enteteMapper.entityToDto(enteteFact);
     }
+
+
+
+
     @Override
     public void deleteEntete(Long id) {
         enteteRepository.deleteById(id);
     }
+
+
+
+
 
     @Override
     public EnteteFactDTO updateEntete(EnteteFactDTO enteteDTO) {

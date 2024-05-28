@@ -7,6 +7,9 @@
 
 
     <changeSet id="5" author="adil">
+        <preConditions>
+            <columnExists tableName="entete_fact" columnName="created_date" ></columnExists>
+        </preConditions>
         <addColumn tableName="entete_fact">
             <column name="created_date" type="date">
                 <constraints nullable="true" />

@@ -12,14 +12,16 @@ public class ProduitDTO {
     private String designation;
 
     private BigDecimal prixUnitaire;
-    private String Description;
+
+
+    private String description;
 
 
     public ProduitDTO(Long id, String designation, BigDecimal prixUnitaire, String description) {
         this.id = id;
         this.designation = designation;
         this.prixUnitaire = prixUnitaire;
-        Description = description;
+        this.description = description;
     }
 
     public ProduitDTO() {
@@ -43,11 +45,11 @@ public class ProduitDTO {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public void setId(Long id) {
