@@ -1,6 +1,5 @@
 package com.example.invoice.model;
 
-import com.example.invoice.model.EnteteFact;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,6 +17,8 @@ public class Client {
 
     @OneToMany
     private List<EnteteFact> enteteFacts;
+
+
     public Client() {
     }
 

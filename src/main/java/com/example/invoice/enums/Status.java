@@ -4,6 +4,4 @@ public enum Status {
     PAYE,
     NON_PAYE,
     EN_COURS
-
-
 }

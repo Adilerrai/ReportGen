@@ -1,10 +1,10 @@
 package com.example.invoice.model;
 
 
+import com.example.invoice.enums.ModePaiement;
 import com.example.invoice.enums.Status;
 import jakarta.persistence.*;
 
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class EnteteFact {
 
     private Date dateFacture;
 
-    private String modePaiement;
+    private ModePaiement modePaiement;
 
     private  Date createdDate;
 
@@ -40,7 +40,7 @@ public class EnteteFact {
     }
 
 
-    public EnteteFact(Long id, Long numeroFacture, Date dateFacture, String modePaiement, Status statut, Client client, List<DetFacture> detFactures) {
+    public EnteteFact(Long id, Long numeroFacture, Date dateFacture, ModePaiement modePaiement, Status statut, Client client, List<DetFacture> detFactures) {
         this.id = id;
         this.numeroFacture = numeroFacture;
         this.dateFacture = dateFacture;
@@ -77,11 +77,11 @@ public class EnteteFact {
         this.dateFacture = dateFacture;
     }
 
-    public String getModePaiement() {
+    public ModePaiement getModePaiement() {
         return modePaiement;
     }
 
-    public void setModePaiement(String modePaiement) {
+    public void setModePaiement(ModePaiement modePaiement) {
         this.modePaiement = modePaiement;
     }
 

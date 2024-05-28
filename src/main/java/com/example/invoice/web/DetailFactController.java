@@ -3,7 +3,6 @@ package com.example.invoice.web;
 
 import com.example.invoice.dto.DetFactureDTO;
 import com.example.invoice.service.DetFactService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

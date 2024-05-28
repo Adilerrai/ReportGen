@@ -1,5 +1,6 @@
 package com.example.invoice.dto;
 
+import com.example.invoice.enums.ModePaiement;
 import com.example.invoice.enums.Status;
 import com.example.invoice.model.Client;
 import com.example.invoice.model.DetFacture;
@@ -17,7 +18,7 @@ public class EnteteFactDTO {
 
     private Date dateFacture;
 
-    private String modePaiement;
+    private ModePaiement modePaiement;
 
     private Date createdDate;
 
@@ -32,7 +33,7 @@ public class EnteteFactDTO {
     public EnteteFactDTO() {
     }
 
-    public EnteteFactDTO(Long id, Long numeroFacture, Date dateFacture, String modePaiement, Status statut, Client client, List<DetFacture> detFactures) {
+    public EnteteFactDTO(Long id, Long numeroFacture, Date dateFacture, ModePaiement modePaiement, Status statut, Client client, List<DetFacture> detFactures) {
         this.id = id;
         this.numeroFacture = numeroFacture;
         this.dateFacture = dateFacture;
@@ -59,11 +60,11 @@ public class EnteteFactDTO {
         this.dateFacture = dateFacture;
     }
 
-    public String getModePaiement() {
+    public ModePaiement getModePaiement() {
         return modePaiement;
     }
 
-    public void setModePaiement(String modePaiement) {
+    public void setModePaiement(ModePaiement modePaiement) {
         this.modePaiement = modePaiement;
     }
 

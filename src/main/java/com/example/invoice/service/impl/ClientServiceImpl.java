@@ -5,7 +5,6 @@ import com.example.invoice.model.Client;
 import com.example.invoice.repository.ClientRepository;
 import com.example.invoice.service.ClientService;
 import com.example.invoice.service.mapper.ClientMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,17 +59,14 @@ public class ClientServiceImpl implements ClientService  {
             client.setEmail(clientDTO.getEmail());
             clientRepository.save(client);
             return clientMapper.entityToDto(client);
-        }else {
+        }
             return null;
         }
-    }
 
     @Override
     public Client newSaveClient(Client client) {
-
-        return clientRepository.save(client);
-
+       return  clientRepository.save(client);
     }
-
-
 }
+
+

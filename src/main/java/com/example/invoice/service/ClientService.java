@@ -14,7 +14,10 @@ public interface ClientService {
      ClientDTO getClientById(Long id);
 
      ClientDTO saveClient(ClientDTO clientDTO);
+
+
      void deleteClient(Long id);
+
      ClientDTO updateClient(ClientDTO clientDTO);
 
     Client newSaveClient(Client client);

@@ -5,10 +5,11 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-
-    <changeSet id="5" author="adil">
-        <preConditions>
-            <columnExists tableName="entete_fact" columnName="created_date" ></columnExists>
+    <changeSet id="7" author="adil">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="entete_fact" columnName="created_date" ></columnExists>
+            </not>
         </preConditions>
         <addColumn tableName="entete_fact">
             <column name="created_date" type="date">

@@ -8,15 +8,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import java.lang.annotation.Native;
 import java.util.List;
+
+
+
 @Service
 public interface EnteteService {
-    public List<EnteteFactDTO> getAllEntetes();
-    public EnteteFactDTO getEnteteById(Long id);
-    public EnteteFactDTO saveEntete(EnteteFactDTO enteteDTO);
-    public void deleteEntete(Long id);
-    public EnteteFactDTO updateEntete(EnteteFactDTO enteteDTO);
+     List<EnteteFactDTO> getAllEntetes();
+     EnteteFactDTO getEnteteById(Long id);
+     EnteteFactDTO saveEntete(EnteteFactDTO enteteDTO);
+     void deleteEntete(Long id);
+     EnteteFactDTO updateEntete(EnteteFactDTO enteteDTO);
 
     Page<EnteteFact> searchEnteteByCriteria(EnteteRechercheDTO enteteFactDTO  , Pageable pageable);
 
