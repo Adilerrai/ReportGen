@@ -1,0 +1,56 @@
+
+s
+java:S1104"XMake prixUnitaire a static final constant or non-public and provide accessors if needed.(¤Šåœúÿÿÿÿ
+x
+java:S1104"bMake montantTotalParProduit a static final constant or non-public and provide accessors if needed.(ÎíÎÅ
+n
+java:S1104"SMake produit a static final constant or non-public and provide accessors if needed.(äÓ×Üüÿÿÿÿ
+n
+java:S1104 "SMake facture a static final constant or non-public and provide accessors if needed.(€í‹“üÿÿÿÿ
+d
+java:S1104%"NMake id a static final constant or non-public and provide accessors if needed.(‡¡–
+m
+java:S1104*"RMake class_ a static final constant or non-public and provide accessors if needed.(¿ªö›øÿÿÿÿ
+i
+java:S1104/"TMake quantite a static final constant or non-public and provide accessors if needed.(Áô¯*
+M
+java:S1444"2Make this "public static prixUnitaire" field final(¤Šåœúÿÿÿÿ
+R
+java:S1444"<Make this "public static montantTotalParProduit" field final(ÎíÎÅ
+H
+java:S1444"-Make this "public static produit" field final(äÓ×Üüÿÿÿÿ
+H
+java:S1444 "-Make this "public static facture" field final(€í‹“üÿÿÿÿ
+>
+java:S1444%"(Make this "public static id" field final(‡¡–
+G
+java:S1444*",Make this "public static class_" field final(¿ªö›øÿÿÿÿ
+C
+java:S1444/".Make this "public static quantite" field final(Áô¯*
+b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Àî¶ø
+l
+java:S3008*"QRename this field "class_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿ªö›øÿÿÿÿ
+m
+java:S18453"RRename field "PRODUIT" to prevent any misunderstanding/clash with field "produit".( íÓûÿÿÿÿÿ
+m
+java:S18454"RRename field "FACTURE" to prevent any misunderstanding/clash with field "facture".(ã®´ûÿÿÿÿ
+c
+java:S18455"HRename field "ID" to prevent any misunderstanding/clash with field "id".(ß»Ñíıÿÿÿÿ
+o
+java:S18456"TRename field "QUANTITE" to prevent any misunderstanding/clash with field "quantite".(éàÀŸùÿÿÿÿ
+P
+java:S1118":Add a private constructor to hide the implicit public one.(Àî¶ø
+r
+java:S3077"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(¤Šåœúÿÿÿÿ
+m
+java:S3077"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(ÎíÎÅ
+r
+java:S3077"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(äÓ×Üüÿÿÿÿ
+r
+java:S3077 "WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(€í‹“üÿÿÿÿ
+m
+java:S3077%"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(‡¡–
+r
+java:S3077*"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(¿ªö›øÿÿÿÿ
+l
+java:S3077/"WUse a thread-safe type; adding "volatile" is not enough to make this field thread-safe.(Áô¯*

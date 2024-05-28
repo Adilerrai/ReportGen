@@ -1,0 +1,9 @@
+
+	java:S112`"FDefine and throw a dedicated exception instead of using a generic one.(ïÎáİüÿÿÿÿ8ëç¼×û1J$8e6d4ed3-0f53-4c84-beb8-73b54a3f5f37
+˜	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´°ÌÈüÿÿÿÿ8È¤™×û1J$f1a9bdad-7603-42b9-ab52-1dba13f52134
+®
+java:S14881"fImmediately return this expression instead of assigning it to the temporary variable "enteteFactDTOS".(‡ŞÆÏúÿÿÿÿ8É¤™×û1J$4748d6c1-f064-4b7a-8fae-7c9d9fd791bf
+’
+java:S3655^"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(8Ğ¤™×û1J$7f01295d-d034-41b5-b2fb-85b400bfad02
+“
+java:S3655:"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ö°íÅ8Ğ¤™×û1J$9333be90-b57a-463f-b378-43dc18354048

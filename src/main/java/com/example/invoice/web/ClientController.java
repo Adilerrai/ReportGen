@@ -5,6 +5,7 @@ import com.example.invoice.dto.ClientDTO;
 import com.example.invoice.service.ClientService;
 import com.example.invoice.service.mapper.ClientMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,18 @@ public class ClientController {
         return ResponseEntity.ok(clientService.saveClient(clientDTO));
     }
 
+
+    @PostMapping("/saveliste")
+
+    public ResponseEntity<List<ClientDTO>> addClient(@RequestBody List<ClientDTO> clientDTOs) {
+
+        List<ClientDTO> clientDTOList = clientDTOs.stream().map(clientDTO -> clientService.saveClient(clientDTO)).toList();
+
+        return  ResponseEntity.ok(clientDTOList);
+    }
+
     @PutMapping("/update")
+
     public ResponseEntity<ClientDTO> updateClient(@RequestBody ClientDTO clientDTO) {
         return ResponseEntity.ok(clientService.updateClient(clientDTO));
     }
@@ -42,6 +54,7 @@ public class ClientController {
     }
 
     @DeleteMapping("/delete/{id}")
+
     public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
         return ResponseEntity.ok().build();

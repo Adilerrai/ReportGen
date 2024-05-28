@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "spring.boot.admin.client.url",
+      "type": "java.lang.String",
+      "description": "URL of the Spring Boot Admin Server to register with."
+    }
+  ]
+}

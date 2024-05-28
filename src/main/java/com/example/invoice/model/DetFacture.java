@@ -13,6 +13,7 @@ public class DetFacture {
 
     private Long quantite;
 
+
     private BigDecimal prixUnitaire;
 
 
@@ -34,12 +35,6 @@ public class DetFacture {
         this.montantTotalParProduit = montantTotalParProduit;
         this.facture = facture;
     }
-
-
-
-
-
-
 
 
 

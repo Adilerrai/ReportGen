@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detFactureSubReport" pageWidth="555" pageHeight="180" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="7dd0e01a-3b68-49d9-bd8c-0b5e4ec8c8e4">
+    <field name="produit.designation" class="java.lang.String"/>
+    <field name="quantite" class="java.lang.Integer"/>
+    <field name="prixUnitaire" class="java.lang.Double"/>
+    <detail>
+        <band height="30">
+            <textField>
+                <reportElement x="0" y="0" width="150" height="30" uuid="4e8c008c-0945-4c4e-9d0f-d92ff969b428"/>
+                <textFieldExpression><![CDATA[$F{produit.designation}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="150" y="0" width="100" height="30" uuid="bf6d1c42-1608-4731-bc18-abd0faa87cbe"/>
+                <textFieldExpression><![CDATA[$F{quantite}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="250" y="0" width="100" height="30" uuid="d2b15f05-f4ed-4bfd-baa6-db9e45ce81dd"/>
+                <textFieldExpression><![CDATA[$F{prixUnitaire}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="350" y="0" width="100" height="30" uuid="c2c4d8dd-fe20-4b31-b786-5ae0654cc8a6"/>
+                <textFieldExpression><![CDATA[$F{quantite} * $F{prixUnitaire}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

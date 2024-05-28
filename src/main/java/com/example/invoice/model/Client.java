@@ -1,6 +1,8 @@
 package com.example.invoice.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 
 import java.util.List;
 
@@ -12,6 +14,9 @@ public class Client {
     private String nom;
     private String prenom;
     private String adresse;
+
+
+
     private String email;
     private String telephone;
 
@@ -38,7 +43,6 @@ public class Client {
     public Long getId() {
         return id;
     }
-
 
     public String getNom() {
         return nom;

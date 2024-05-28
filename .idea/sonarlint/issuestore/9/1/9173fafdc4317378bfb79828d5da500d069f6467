@@ -1,0 +1,9 @@
+
+ª
+java:S1488"bImmediately return this expression instead of assigning it to the temporary variable "clientDTOS".(¡‹ ³şÿÿÿÿ8öô·õû1J$07a1e80b-279b-4196-9f48-2b366384b816
+˜
+java:S36555"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(Š°¦ùÿÿÿÿ8œçõû1J$cc621947-5237-4ebe-aef0-db0fa44824ae
+˜
+java:S3655!"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ïÑ«½úÿÿÿÿ8ûô·õû1J$8376a41d-0310-4ffc-891b-f07ad911c990
+
+java:S1612"FReplace this lambda with method reference 'clientMapper::entityToDto'.(¡‹ ³şÿÿÿÿ8Šõ·õû1J$a8ad35bd-cb96-4ae6-84ba-fd040e86113a
