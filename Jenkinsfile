@@ -2,8 +2,10 @@ pipeline {
     agent any
 
     tools {
-        maven 'mvn'  // Assurez-vous que "mvn" correspond à l'installation Maven configurée
-        jdk 'java17'  // Assurez-vous que "jdk11" correspond à l'installation JDK configurée
+        maven 'mvn'
+        jdk 'java17'
+        // Make sure Docker is installed and configured in Jenkins
+        docker 'docker'
     }
 
     stages {
@@ -22,6 +24,24 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'mvn test'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                script {
+                    docker.build("my-image:latest")
+                }
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                        docker.image("my-image:latest").push()
+                    }
+                }
             }
         }
     }
