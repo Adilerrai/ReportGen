@@ -7,7 +7,7 @@ pipeline {
     }
 
     tools {
-        git 'JGit'  // Assurez-vous que l'outil Git par défaut est configuré
+        git 'Default'  // Assurez-vous que l'outil Git par défaut est configuré
     }
 
     stages {
