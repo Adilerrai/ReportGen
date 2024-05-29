@@ -5,7 +5,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the code from the repository
-                    git branch: 'main', url: 'https://github.com/Adilerrai/ReportGen.git'            }
+                    git branch: 'main', url: 'https://github.com/Adilerrai/ReportGen.git', refspec: '+refs/heads/*:refs/remotes/origin/*'
+                              }
         }
 
         stage('Build') {
