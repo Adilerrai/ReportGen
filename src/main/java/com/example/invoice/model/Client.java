@@ -14,10 +14,9 @@ public class Client {
     private String nom;
     private String prenom;
     private String adresse;
-
-
-
+    @Email(message= "Email should be valid")
     private String email;
+    @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
     private String telephone;
 
     @OneToMany
