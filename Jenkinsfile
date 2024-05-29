@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'mvn'
+        maven 'mvn'  // Assurez-vous que "mvn" correspond à l'installation Maven configurée
+        jdk 'openjdk:11-jdk-slim'  // Assurez-vous que "jdk11" correspond à l'installation JDK configurée
     }
 
     stages {
@@ -14,8 +15,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean'
-
+                bat 'mvn clean install'
             }
         }
 
