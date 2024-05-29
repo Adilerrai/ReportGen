@@ -7,7 +7,7 @@ pipeline {
     }
 
     tools {
-        git 'Default'  // Assurez-vous que l'outil Git par défaut est configuré
+        git 'Default'  // Assurez-vous que le nom de l'outil Git correspond à celui configuré dans Jenkins
     }
 
     stages {
