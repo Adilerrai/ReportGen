@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'mvn'  // Assurez-vous que "mvn" correspond à l'installation Maven configurée
-        jdk 'openjdk:11-jdk-slim'  // Assurez-vous que "jdk11" correspond à l'installation JDK configurée
+        jdk 'java17'  // Assurez-vous que "jdk11" correspond à l'installation JDK configurée
     }
 
     stages {
