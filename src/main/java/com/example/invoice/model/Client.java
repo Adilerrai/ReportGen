@@ -2,9 +2,9 @@ package com.example.invoice.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
-
 import java.util.List;
+
+
 
 @Entity
 public class Client {
@@ -16,7 +16,6 @@ public class Client {
     private String adresse;
     @Email(message= "Email should be valid")
     private String email;
-    @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
     private String telephone;
 
     @OneToMany
