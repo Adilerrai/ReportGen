@@ -5,7 +5,7 @@ import com.example.invoice.dto.EnteteFactDTO;
 import com.example.invoice.dto.EnteteRechercheDTO;
 import com.example.invoice.model.EnteteFact;
 import com.example.invoice.service.EnteteService;
-import com.example.invoice.service.ReportService;
+import com.example.invoice.service.impl.ReportService;
 import com.example.invoice.service.mapper.EnteteMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,6 +1,6 @@
 
 ˜
-java:S3655"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(é«®àþÿÿÿÿ8ùÃçÔû1J$b368734e-2d56-4acb-9bab-30dbe5565a78
-m	java:S106("+Replace this use of System.out by a logger.(Ê¶Öê8þÃçÔû1J$7832d812-b573-498f-8683-912f33bf5b69
+java:S3655"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(é«®àþÿÿÿÿ8ùÃçÔû1J$d3c00aae-c856-4cbd-af4f-17d379c983c6
+m	java:S106("+Replace this use of System.out by a logger.(Ê¶Öê8þÃçÔû1J$cf3cf075-3de0-4aec-a67f-0abf4dc0e018
 •
-java:S1612."RReplace this lambda with method reference 'DetFacture::getMontantTotalParProduit'.(ùÉƒã8€ÄçÔû1J$924a55e1-b928-43b4-af9b-e1bc43b5aa1d
+java:S1612."RReplace this lambda with method reference 'DetFacture::getMontantTotalParProduit'.(ùÉƒã8€ÄçÔû1J$151cd243-f92c-4af9-a475-851b99c3b291

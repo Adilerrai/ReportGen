@@ -22,8 +22,6 @@ public class ProduitController {
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-
     public ResponseEntity<ProduitDTO> addProduit(@RequestBody ProduitDTO produitDTO) {
         return ResponseEntity.ok(produitService.saveProduit(produitDTO));
     }

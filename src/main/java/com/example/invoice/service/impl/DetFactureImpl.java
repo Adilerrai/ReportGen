@@ -1,9 +1,11 @@
 package com.example.invoice.service.impl;
 
 import com.example.invoice.dto.DetFactureDTO;
+import com.example.invoice.dto.ProduitDTO;
 import com.example.invoice.model.DetFacture;
 import com.example.invoice.repository.DetFactureRepository;
 import com.example.invoice.service.DetFactService;
+import com.example.invoice.service.ProduitService;
 import com.example.invoice.service.mapper.DetFactureMapper;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +16,18 @@ import java.util.List;
 @Service
 public class DetFactureImpl implements DetFactService {
 
-    private DetFactureRepository detFactureRepository;
+    private final DetFactureRepository detFactureRepository;
 
-    private DetFactureMapper detFactureMapper;
+    private final DetFactureMapper detFactureMapper;
 
-    public DetFactureImpl(DetFactureRepository detFactureRepository, DetFactureMapper   detFactureMapper)   {
+
+    private final ProduitService produitService;
+
+
+    public DetFactureImpl(DetFactureRepository detFactureRepository, DetFactureMapper   detFactureMapper, ProduitService produitService)   {
         this.detFactureRepository = detFactureRepository;
         this.detFactureMapper = detFactureMapper;
+        this.produitService = produitService;
     }
 
 
@@ -46,6 +53,22 @@ public class DetFactureImpl implements DetFactService {
 
     @Override
     public DetFactureDTO saveDetFact(DetFactureDTO detFactDTO) {
+
+        System.out.println(detFactDTO.getProduit().getId());
+        System.out.println(produitService.getProduitById(detFactDTO.getProduit().getId()).getQuantite() + " " + detFactDTO.getQuantite());
+        System.out.println(detFactDTO.getQuantite());
+
+
+        System.out.println(detFactDTO.getProduit().getQuantite() + " " + detFactDTO.getQuantite());
+
+
+        if(produitService.getProduitById(detFactDTO.getProduit().getId()).getQuantite() < detFactDTO.getQuantite()) {
+            throw new RuntimeException("Quantité insuffisante");
+        }
+
+        ProduitDTO produitFromDb = produitService.getProduitById(detFactDTO.getProduit().getId());
+        produitFromDb.setQuantite((int) (produitFromDb.getQuantite()- detFactDTO.getQuantite()));
+        produitService.updateProduit(produitFromDb);
         DetFacture detFacture = detFactureMapper.dtoToEntity(detFactDTO);
         detFactureRepository.save(detFacture);
         return detFactureMapper.entityToDto(detFacture);

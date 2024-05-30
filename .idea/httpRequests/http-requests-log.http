@@ -1,0 +1,73 @@
+GET http://localhost:8085/api/produits/2
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2024-05-29T141200.401.json
+
+###
+
+POST http://localhost:8085/api/detail-facts/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzE2OTg3NDIyLCJleHAiOjE3MTcwNzM4MjJ9.4cZnF8eZGY0mJ9bBOYw1mE7q3IR3_FdNiwsySitigk4
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+
+  "quantite": 1,
+  "prixUnitaire": 22.6,
+  "produit": {
+    "id":1
+  }
+  }
+
+<> 2024-05-29T140641.401.json
+
+###
+
+POST http://localhost:8085/api/detail-facts/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzE2OTg3NDIyLCJleHAiOjE3MTcwNzM4MjJ9.4cZnF8eZGY0mJ9bBOYw1mE7q3IR3_FdNiwsySitigk4
+Content-Length: 87
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "id": 0,
+  "quantite": 1,
+  "prixUnitaire": 22.6,
+  "produit": {
+    "id":1
+  }
+  }
+
+<> 2024-05-29T140632.401.json
+
+###
+
+POST http://localhost:8085/api/detail-facts/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzE2OTg3NDIyLCJleHAiOjE3MTcwNzM4MjJ9.4cZnF8eZGY0mJ9bBOYw1mE7q3IR3_FdNiwsySitigk4
+Content-Length: 90
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.1.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "id": 0,
+  "quantite": 1,
+  "prixUnitaire": 22.6,
+  "produit": {
+    "id": 702
+  }
+  }
+
+<> 2024-05-29T140616.401.json
+
+###
+

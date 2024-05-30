@@ -1,0 +1,6 @@
+
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ù‰ŒÓøÿÿÿÿ8¥ïÅü1J$c52323c8-846e-4d3e-b401-c2c65f1c25dc
+‰
+java:S2789"FEnsure this "Optional" could never be null and remove this null-check.(Öşÿ©8ÑªğÅü1J$cde88051-d428-49f3-b31d-75a7e37c5b7a
+‡
+java:S2583"DChange this condition so that it does not always evaluate to "false"(Öşÿ©8©×¨Ìü1J$69b999af-0a12-4ef6-b068-e20f0375a940

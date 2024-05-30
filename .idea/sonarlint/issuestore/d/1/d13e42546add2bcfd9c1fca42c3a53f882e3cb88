@@ -1,0 +1,7 @@
+
+‡	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(œ÷‘8ÉÇÍü1J$a617a468-5ce6-43d1-a5c1-2f14aeb94e8a
+	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(«Œıÿÿÿÿ8ÉÇÍü1J$12c2a390-db60-4409-bfb0-84158ecfb9a6
+˜
+java:S3655+"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(·êó¤ıÿÿÿÿ8ÑÇÍü1J$8eb0bb0f-1228-4947-9df8-1108dcb80742
+É
+java:S11860"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ú›÷ûÿÿÿÿ8ÒÇÍü1J$aa40f6f2-95e0-4b73-bcd2-615618cef2e7

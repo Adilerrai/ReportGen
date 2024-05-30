@@ -2,8 +2,10 @@ package com.example.invoice.service.impl;
 
 import com.example.invoice.dto.EnteteFactDTO;
 import com.example.invoice.dto.EnteteRechercheDTO;
+import com.example.invoice.model.Caisse;
 import com.example.invoice.model.DetFacture;
 import com.example.invoice.model.EnteteFact;
+import com.example.invoice.repository.CaisseRepository;
 import com.example.invoice.repository.DetFactureRepository;
 import com.example.invoice.repository.EnteteCriteriaRepo;
 import com.example.invoice.repository.EnteteRepository;
@@ -13,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -33,13 +37,15 @@ public class EnteteServiceImpl implements EnteteService {
 
     private DetFactureRepository detFactureRepository;
 
+    private  final CaisseRepository caisseRepository;
 
 
-    public EnteteServiceImpl(EnteteRepository enteteRepository, DetFactureRepository detFactureRepository, EnteteMapper enteteMapper, EnteteCriteriaRepo enteteCriteriaRepo) {
+    public EnteteServiceImpl(EnteteRepository enteteRepository, DetFactureRepository detFactureRepository, EnteteMapper enteteMapper, EnteteCriteriaRepo enteteCriteriaRepo, CaisseRepository caisseRepository) {
         this.enteteRepository = enteteRepository;
         this.enteteMapper = enteteMapper;
         this.enteteCriteriaRepo = enteteCriteriaRepo;
         this.detFactureRepository = detFactureRepository;
+        this.caisseRepository = caisseRepository;
     }
 
 
@@ -66,12 +72,27 @@ public class EnteteServiceImpl implements EnteteService {
 
 
         EnteteFact enteteFact = enteteMapper.dtoToEntity (enteteDTO);
-        enteteFact.setCreatedDate(java.sql.Date.valueOf(now()));
+        enteteFact.setDateFacture(Timestamp.valueOf(now().atStartOfDay()));
 
         for (DetFacture detFacture : enteteFact.getDetFactures()) {
             detFactureRepository.save(detFacture);
         }
 
+
+        BigDecimal totalAmount = enteteDTO.getDetFactures().stream()
+                .filter(detFacture -> detFacture.getMontantTotalParProduit() != null)
+                .map(detFacture -> detFacture.getMontantTotalParProduit())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+
+        Caisse caisse = caisseRepository.findById(1L).get();
+        caisse.setTotalVentes(caisse.getTotalVentes().add(totalAmount));
+
+        System.out.println("caisse.getTotalVentes() " + caisse.getTotalVentes()) ;
+
+        caisse.setDifference(caisse.getTotalVentes().subtract(caisse.getTotalAchats()));
+
+        enteteFact.setTotalFacture(totalAmount);
         enteteFact = enteteRepository.save(enteteFact);
 
         return   enteteMapper.entityToDto(enteteFact);

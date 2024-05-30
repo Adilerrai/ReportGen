@@ -14,4 +14,7 @@ public interface ProduitService {
      ProduitDTO saveProduit(ProduitDTO produitDTO);
  void deleteProduit(Long id);
      ProduitDTO updateProduit(ProduitDTO produitDTO);
+
+
+
 }

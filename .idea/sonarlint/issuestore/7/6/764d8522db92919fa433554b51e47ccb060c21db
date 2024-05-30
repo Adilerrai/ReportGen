@@ -1,9 +1,14 @@
 
-	java:S112`"FDefine and throw a dedicated exception instead of using a generic one.(ïÎáİüÿÿÿÿ8ëç¼×û1J$8e6d4ed3-0f53-4c84-beb8-73b54a3f5f37
-˜	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´°ÌÈüÿÿÿÿ8È¤™×û1J$f1a9bdad-7603-42b9-ab52-1dba13f52134
+	java:S112u"FDefine and throw a dedicated exception instead of using a generic one.(ïÎáİüÿÿÿÿ8øŠÈÌü1J$2e456bec-c4be-4304-8c2f-7da7c4656071
+˜	java:S1176"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´°ÌÈüÿÿÿÿ8ùŠÈÌü1J$f14b74b0-3433-4b2a-b8f7-6630a725f2e2
 ®
-java:S14881"fImmediately return this expression instead of assigning it to the temporary variable "enteteFactDTOS".(‡ŞÆÏúÿÿÿÿ8É¤™×û1J$4748d6c1-f064-4b7a-8fae-7c9d9fd791bf
-’
-java:S3655^"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(8Ğ¤™×û1J$7f01295d-d034-41b5-b2fb-85b400bfad02
+java:S14887"fImmediately return this expression instead of assigning it to the temporary variable "enteteFactDTOS".(‡ŞÆÏúÿÿÿÿ8úŠÈÌü1J$be82e52b-156a-42a3-a992-433890bbd234
+˜
+java:S3655X"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(›Á·øÿÿÿÿ8…‹ÈÌü1J$e38ed3bf-45fb-4d8b-8f14-fa86b0bcfd28
 “
-java:S3655:"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ö°íÅ8Ğ¤™×û1J$9333be90-b57a-463f-b378-43dc18354048
+java:S3655@"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ö°íÅ8†‹ÈÌü1J$56ddf620-b8f3-470d-b096-15c5d6b5f2c4
+’
+java:S3655s"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(8†‹ÈÌü1J$fae04ab2-a04b-4252-b274-a1a00096b5e9
+•
+java:S1612T"RReplace this lambda with method reference 'DetFacture::getMontantTotalParProduit'.(ùÉƒã8‹‹ÈÌü1J$d77464fb-2ab6-4c96-b54d-7c86c9d145ea
+r	java:S106["+Replace this use of System.out by a logger.(Ù—­ùÿÿÿÿ8¢ËÉÌü1J$7ea45b0e-2365-4e32-a103-43ffc4002d05

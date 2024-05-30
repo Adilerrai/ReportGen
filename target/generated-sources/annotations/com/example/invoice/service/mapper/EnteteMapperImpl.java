@@ -3,6 +3,7 @@ package com.example.invoice.service.mapper;
 import com.example.invoice.dto.EnteteFactDTO;
 import com.example.invoice.model.DetFacture;
 import com.example.invoice.model.EnteteFact;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-28T15:14:15+0100",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.11 (Amazon.com Inc.)"
+    date = "2024-05-30T13:47:34+0100",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.10 (Oracle Corporation)"
 )
 @Component
 public class EnteteMapperImpl implements EnteteMapper {
@@ -35,6 +36,7 @@ public class EnteteMapperImpl implements EnteteMapper {
             enteteFactDTO.setDetFactures( new ArrayList<DetFacture>( list ) );
         }
         enteteFactDTO.setId( entete.getId() );
+        enteteFactDTO.setTotalFacture( entete.getTotalFacture() );
 
         return enteteFactDTO;
     }
@@ -47,7 +49,10 @@ public class EnteteMapperImpl implements EnteteMapper {
 
         EnteteFact enteteFact = new EnteteFact();
 
-        enteteFact.setCreatedDate( enteteDTO.getCreatedDate() );
+        enteteFact.setTotalFacture( enteteDTO.getTotalFacture() );
+        if ( enteteDTO.getCreatedDate() != null ) {
+            enteteFact.setCreatedDate( new Timestamp( enteteDTO.getCreatedDate().getTime() ) );
+        }
         enteteFact.setNumeroFacture( enteteDTO.getNumeroFacture() );
         enteteFact.setDateFacture( enteteDTO.getDateFacture() );
         enteteFact.setModePaiement( enteteDTO.getModePaiement() );

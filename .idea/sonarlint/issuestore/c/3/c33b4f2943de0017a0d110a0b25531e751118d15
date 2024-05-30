@@ -1,7 +1,14 @@
 
-¢
-java:S1488 "fImmediately return this expression instead of assigning it to the temporary variable "detFactureDTOS".(ÉÔ¯°J$10d3cd2d-4d19-4f6a-94b6-cb948ac15052
-‹
-java:S3655("PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(›¬–J$3c26dce7-a17f-4c10-8287-c48e7376b5c4
-Œ
-java:S3655@"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(²†­ÏJ$1158826f-8502-4c26-a4b7-4163ce1e5d48
+ˆ	java:S112B"FDefine and throw a dedicated exception instead of using a generic one.(‹Û†8å‰Ê¦ü1J$34ef96d6-c120-48a7-94eb-73b4b0140470
+©
+java:S1488'"fImmediately return this expression instead of assigning it to the temporary variable "detFactureDTOS".(ÉÔ¯°8è‰Ê¦ü1J$5eb269bc-a9b3-4e4a-92b9-f895fbdc1082
+’
+java:S3655/"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(›¬–8ï‰Ê¦ü1J$6641bc21-487d-463c-ac11-47a0d2bc5da0
+“
+java:S3655W"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(²†­Ï8ï‰Ê¦ü1J$0dbabf62-2e72-4002-b794-4e3f5f0abba0
+
+java:S1612'"JReplace this lambda with method reference 'detFactureMapper::entityToDto'.(ÉÔ¯°8ó‰Ê¦ü1J$e34dfe8d-d608-43ce-ad41-33a221365e77
+m	java:S1069"+Replace this use of System.out by a logger.(¨çµƒ8õ‰Ê¦ü1J$9ca1c95f-d53a-453c-ab13-9eb1227a6eb5
+r	java:S106:"+Replace this use of System.out by a logger.(à¬›¦þÿÿÿÿ8ö‰Ê¦ü1J$7a035b5e-8a2d-48ba-bd93-fba2ae6e288c
+r	java:S106;"+Replace this use of System.out by a logger.(¬ÿÊ¹úÿÿÿÿ8ö‰Ê¦ü1J$7fa5c55d-bd5b-40db-9f05-9397586252c7
+m	java:S106>"+Replace this use of System.out by a logger.(óŽÌ÷8ö‰Ê¦ü1J$99f2f494-3af3-4586-a9a2-28a0fee4d0d2

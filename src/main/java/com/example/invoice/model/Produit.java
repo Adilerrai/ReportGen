@@ -19,6 +19,9 @@ public class Produit {
     private String Description;
 
 
+    private  int quantite;
+
+
 
     public Produit(Long id, String designation, BigDecimal prixUnitaire, String description) {
         this.id = id;
@@ -29,6 +32,14 @@ public class Produit {
 
     public Produit() {
 
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
     }
 
     public String getDesignation() {

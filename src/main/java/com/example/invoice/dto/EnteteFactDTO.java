@@ -7,6 +7,8 @@ import com.example.invoice.model.DetFacture;
 import jakarta.persistence.*;
 
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -24,22 +26,23 @@ public class EnteteFactDTO {
 
     private Status statut;
 
-    @ManyToOne
+    private BigDecimal totalFacture = BigDecimal.ZERO;
+
     private Client client;
 
-    @OneToMany
     private List<DetFacture> detFactures;
 
     public EnteteFactDTO() {
     }
 
-    public EnteteFactDTO(Long id, Long numeroFacture, Date dateFacture, ModePaiement modePaiement, Status statut, Client client, List<DetFacture> detFactures) {
+    public EnteteFactDTO(BigDecimal totalFacture ,Long id, Long numeroFacture, Date dateFacture, ModePaiement modePaiement, Status statut, Client client, List<DetFacture> detFactures) {
         this.id = id;
         this.numeroFacture = numeroFacture;
         this.dateFacture = dateFacture;
         this.modePaiement = modePaiement;
         this.statut = statut;
         this.client = client;
+        this.totalFacture = totalFacture;
         this.detFactures = detFactures;
     }
 
@@ -52,8 +55,8 @@ public class EnteteFactDTO {
         this.numeroFacture = numeroFacture;
     }
 
-    public Date getDateFacture() {
-        return dateFacture;
+    public Timestamp getDateFacture() {
+        return (Timestamp) dateFacture;
     }
 
     public void setDateFacture(Date dateFacture) {
@@ -106,5 +109,13 @@ public class EnteteFactDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public BigDecimal getTotalFacture() {
+        return totalFacture;
+    }
+
+    public void setTotalFacture(BigDecimal totalFacture) {
+        this.totalFacture = totalFacture;
     }
 }

@@ -13,6 +13,8 @@ public class ProduitDTO {
 
     private BigDecimal prixUnitaire;
 
+    private int quantite;
+
 
     private String description;
 
@@ -26,6 +28,15 @@ public class ProduitDTO {
 
     public ProduitDTO() {
 
+    }
+
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
     }
 
     public String getDesignation() {

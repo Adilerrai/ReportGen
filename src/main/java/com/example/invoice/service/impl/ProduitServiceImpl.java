@@ -54,6 +54,7 @@ public class ProduitServiceImpl  implements ProduitService {
         if(produit != null) {
             produit.setDesignation(produitDTO.getDesignation());
             produit.setPrixUnitaire(produitDTO.getPrixUnitaire());
+            produit.setQuantite(produitDTO.getQuantite());
             produit.setDescription(produitDTO.getDescription());
             produitRepository.save(produit);
             return produitMapper.entityToDto(produit);

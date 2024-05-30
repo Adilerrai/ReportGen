@@ -7,7 +7,8 @@ import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.ListAttribute;
 import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.persistence.metamodel.StaticMetamodel;
-import java.util.Date;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @StaticMetamodel(EnteteFact.class)
 @Generated("org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
@@ -17,7 +18,7 @@ public abstract class EnteteFact_ {
 	/**
 	 * @see com.example.invoice.model.EnteteFact#createdDate
 	 **/
-	public static volatile SingularAttribute<EnteteFact, Date> createdDate;
+	public static volatile SingularAttribute<EnteteFact, Timestamp> createdDate;
 	
 	/**
 	 * @see com.example.invoice.model.EnteteFact#detFactures
@@ -32,12 +33,17 @@ public abstract class EnteteFact_ {
 	/**
 	 * @see com.example.invoice.model.EnteteFact#dateFacture
 	 **/
-	public static volatile SingularAttribute<EnteteFact, Date> dateFacture;
+	public static volatile SingularAttribute<EnteteFact, Timestamp> dateFacture;
 	
 	/**
 	 * @see com.example.invoice.model.EnteteFact#modePaiement
 	 **/
 	public static volatile SingularAttribute<EnteteFact, ModePaiement> modePaiement;
+	
+	/**
+	 * @see com.example.invoice.model.EnteteFact#totalFacture
+	 **/
+	public static volatile SingularAttribute<EnteteFact, BigDecimal> totalFacture;
 	
 	/**
 	 * @see com.example.invoice.model.EnteteFact#client
@@ -64,6 +70,7 @@ public abstract class EnteteFact_ {
 	public static final String NUMERO_FACTURE = "numeroFacture";
 	public static final String DATE_FACTURE = "dateFacture";
 	public static final String MODE_PAIEMENT = "modePaiement";
+	public static final String TOTAL_FACTURE = "totalFacture";
 	public static final String CLIENT = "client";
 	public static final String ID = "id";
 	public static final String STATUT = "statut";

@@ -35,11 +35,17 @@ public abstract class Produit_ {
 	 * @see com.example.invoice.model.Produit
 	 **/
 	public static volatile EntityType<Produit> class_;
+	
+	/**
+	 * @see com.example.invoice.model.Produit#quantite
+	 **/
+	public static volatile SingularAttribute<Produit, Integer> quantite;
 
 	public static final String PRIX_UNITAIRE = "prixUnitaire";
 	public static final String DESCRIPTION = "Description";
 	public static final String ID = "id";
 	public static final String DESIGNATION = "designation";
+	public static final String QUANTITE = "quantite";
 
 }
 
