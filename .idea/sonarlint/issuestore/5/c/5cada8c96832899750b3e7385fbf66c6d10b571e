@@ -1,0 +1,7 @@
+
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(èÁÒÛúÿÿÿÿ8—„˜Ğü1J$549e8e8e-6c1e-4e35-bd9f-9d5d3892d242
+˜
+java:S3655"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(é«®àşÿÿÿÿ8ŸÌ•Íü1J$36c07a5f-80dc-4e9f-b14b-f2c0ff5ce7ad
+m	java:S106("+Replace this use of System.out by a logger.(Ê¶Öê8şÃçÔû1J$ca81f702-aef4-468c-80fa-4cb7ca0268e4
+•
+java:S1612."RReplace this lambda with method reference 'DetFacture::getMontantTotalParProduit'.(ùÉƒã8©Ì•Íü1J$df2c746d-6c43-4060-9f6b-72bd1b5b6534

@@ -1,15 +1,15 @@
 package com.example.invoice.service.impl;
 
-import com.example.invoice.model.Achat;
-import com.example.invoice.model.Caisse;
-import com.example.invoice.model.DetAchat;
-import com.example.invoice.model.Produit;
-import com.example.invoice.repository.AchatRepository;
+import com.example.invoice.model.*;
+import com.example.invoice.repository.achat.AchatCustomRepo;
+import com.example.invoice.repository.achat.AchatRepository;
 import com.example.invoice.repository.CaisseRepository;
 import com.example.invoice.repository.DetAchatRepository;
 import com.example.invoice.repository.ProduitRepository;
 import com.example.invoice.service.AchatService;
 import com.example.invoice.service.FournisseurService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -30,16 +30,19 @@ public class AchatServiceImpl implements AchatService {
 
     private final DetAchatRepository detAchatRepository;
 
+    private  final AchatCustomRepo achatCustomRepo;
 
 
 
 
-    public AchatServiceImpl(AchatRepository achatRepository, FournisseurService fournisseurService, ProduitRepository produitRepository, CaisseRepository caisseRepository, DetAchatRepository detAchatRepository) {
+
+    public AchatServiceImpl(AchatRepository achatRepository, FournisseurService fournisseurService, ProduitRepository produitRepository, CaisseRepository caisseRepository, DetAchatRepository detAchatRepository, AchatCustomRepo achatCustomRepo) {
         this.achatRepository = achatRepository;
         this.fournisseurService = fournisseurService;
         this.produitRepository = produitRepository;
         this.caisseRepository = caisseRepository;
         this.detAchatRepository = detAchatRepository;
+        this.achatCustomRepo = achatCustomRepo;
     }
 
 
@@ -117,4 +120,12 @@ public class AchatServiceImpl implements AchatService {
     public List<Achat> getAchatByFournisseurId(Long id) {
 
     return achatRepository.findAllByFournisseurId(id);
-}}
+}
+
+    @Override
+    public Page<Achat> getAllAchatsPaginated(AchatCriteria achatCriteria, Pageable pageable) {
+        return achatCustomRepo.findByCriteria(achatCriteria, pageable);
+    }
+
+
+}

@@ -2,9 +2,12 @@ package com.example.invoice.web;
 
 import com.example.invoice.dto.AchatDTO;
 import com.example.invoice.model.Achat;
+import com.example.invoice.model.AchatCriteria;
 import com.example.invoice.service.AchatService;
 import com.example.invoice.service.impl.AchatServiceImpl;
 import com.example.invoice.service.mapper.AchatMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,4 +48,12 @@ public class AchatController {
         Achat achat = achatService.getAchatById(id);
         return ResponseEntity.ok(achatMapper.entityToDto(achat));
     }
+
+    @PostMapping("/get-all-achats-paginated")
+    public ResponseEntity<Page<AchatDTO>> getAllAchatsPaginated(@RequestBody AchatCriteria achatCriteria, Pageable pageable) {
+        Page<Achat> achats = achatService.getAllAchatsPaginated(achatCriteria, pageable)    ;
+        return ResponseEntity.ok(achats.map(achatMapper::entityToDto));
+    }
+
+
 }

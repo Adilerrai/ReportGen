@@ -3,7 +3,7 @@ package com.example.invoice.service.impl;
 import com.example.invoice.model.Achat;
 import com.example.invoice.model.ArreteDeCaisse;
 import com.example.invoice.model.EnteteFact;
-import com.example.invoice.repository.AchatRepository;
+import com.example.invoice.repository.achat.AchatRepository;
 import com.example.invoice.repository.ArreteDeCaisseRepository;
 import com.example.invoice.repository.CaisseRepository;
 import com.example.invoice.repository.EnteteRepository;

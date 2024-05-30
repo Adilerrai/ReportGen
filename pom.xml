@@ -7,7 +7,7 @@
         <version>3.2.5</version>
         <relativePath/>
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com</groupId>
     <artifactId>Invoice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Invoice</name>
@@ -156,6 +156,20 @@
                             <artifactId>mapstruct-processor</artifactId>
                             <version>1.5.3.Final</version>
                         </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <annotationProcessorPath>
+                            <groupId>org.hibernate</groupId>
+                            <artifactId>hibernate-jpamodelgen</artifactId>
+                            <version>${hibernate.version}</version>
+                        </annotationProcessorPath>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>

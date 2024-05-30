@@ -5,7 +5,7 @@ import com.example.invoice.dto.EnteteFactDTO;
 import com.example.invoice.dto.EnteteRechercheDTO;
 import com.example.invoice.model.EnteteFact;
 import com.example.invoice.service.EnteteService;
-import com.example.invoice.service.impl.ReportService;
+import com.example.invoice.fileGeneration.ReportService;
 import com.example.invoice.service.mapper.EnteteMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -66,7 +66,7 @@ public class EnteteController {
     @GetMapping("/reports/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> generateReport(@PathVariable Long id) {
-        return ResponseEntity.ok().body(reportService.generateReport(id));
+        return ResponseEntity.ok().body(reportService.generateEntete(id));
     }
 
 
