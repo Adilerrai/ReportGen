@@ -23,6 +23,5 @@ public interface AchatService {
     Page<Achat> getAllAchatsPaginated(AchatCriteria achatCriteria, Pageable pageable);
 
 
-
-
+    Achat valideAchat(Long id);
 }

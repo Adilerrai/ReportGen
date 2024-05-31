@@ -75,7 +75,7 @@
         </band>
     </pageHeader>
     <detail>
-        <band height="200">
+        <band height="230">
             <staticText>
                 <reportElement x="0" y="0" width="150" height="20" uuid="2f9c10ea-9277-4f21-91bb-7f5c058c4865"/>
                 <textElement>
@@ -99,7 +99,7 @@
                 <textFieldExpression><![CDATA[$F{fournisseur.telephone}]]></textFieldExpression>
             </textField>
             <componentElement>
-                <reportElement x="0" y="70" width="555" height="90" uuid="78071fd4-04cf-4be3-a3ac-9585befa7280">
+                <reportElement x="0" y="70" width="555" height="60" uuid="78071fd4-04cf-4be3-a3ac-9585befa7280">
                     <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
                     <property name="com.jaspersoft.studio.table.style.table_header" value="Table_2_TH"/>
                     <property name="com.jaspersoft.studio.table.style.column_header" value="Table_2_CH"/>
@@ -150,7 +150,8 @@
                         <jr:detailCell style="Table_2_TD" height="30">
                             <textField>
                                 <reportElement x="0" y="0" width="140" height="30" uuid="d462675d-ca72-4ed2-97ae-4c5ed1750a65"/>
-                                <textFieldExpression><![CDATA[        $F{quantiteAchete}]]></textFieldExpression>
+                                <textElement textAlignment="Center"/>
+                                <textFieldExpression><![CDATA[$F{quantiteAchete}]]></textFieldExpression>
                             </textField>
                         </jr:detailCell>
                     </jr:column>
@@ -165,6 +166,7 @@
                         <jr:detailCell style="Table_2_TD" height="30">
                             <textField>
                                 <reportElement x="0" y="0" width="105" height="30" uuid="d6dcf477-0998-404b-9f0e-b566a504c865"/>
+                                <textElement textAlignment="Center"/>
                                 <textFieldExpression><![CDATA[$F{prixUnitaire}]]></textFieldExpression>
                             </textField>
                         </jr:detailCell>
@@ -187,11 +189,11 @@
                 </jr:table>
             </componentElement>
             <staticText>
-                <reportElement x="400" y="180" width="100" height="20" uuid="8c4b6c5e-c1d6-4a6e-819e-42b3b5bc0135"/>
+                <reportElement x="400" y="210" width="100" height="20" uuid="8c4b6c5e-c1d6-4a6e-819e-42b3b5bc0135"/>
                 <text><![CDATA[Total Amount:]]></text>
             </staticText>
             <textField>
-                <reportElement x="500" y="180" width="100" height="20" uuid="04f8a4da-9f1e-4b3e-9fbb-305cb9eb7d2d"/>
+                <reportElement x="500" y="210" width="100" height="20" uuid="04f8a4da-9f1e-4b3e-9fbb-305cb9eb7d2d"/>
                 <textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
             </textField>
         </band>

@@ -1,5 +1,6 @@
 package com.example.invoice.service.impl;
 
+import com.example.invoice.enums.StatusAchat;
 import com.example.invoice.model.*;
 import com.example.invoice.repository.achat.AchatCustomRepo;
 import com.example.invoice.repository.achat.AchatRepository;
@@ -125,6 +126,16 @@ public class AchatServiceImpl implements AchatService {
     @Override
     public Page<Achat> getAllAchatsPaginated(AchatCriteria achatCriteria, Pageable pageable) {
         return achatCustomRepo.findByCriteria(achatCriteria, pageable);
+    }
+
+
+    @Override
+    public Achat valideAchat(Long id) {
+        Achat achat = achatRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Achat non trouvé"));
+
+        achat.setStatusAchat(StatusAchat.REGLE);
+                return achatRepository.save(achat);
     }
 
 

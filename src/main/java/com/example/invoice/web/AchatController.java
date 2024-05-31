@@ -55,6 +55,8 @@ public class AchatController {
 
     @PostMapping("/get-all-achats-paginated")
     public ResponseEntity<Page<AchatDTO>> getAllAchatsPaginated(@RequestBody AchatCriteria achatCriteria, Pageable pageable) {
+        System.out.println("criteria after making changes on enum : " + achatCriteria.getStatusAchat());
+        System.out.println("criteria after making changes on fou : " + achatCriteria.getFournisseurId());
         Page<Achat> achats = achatService.getAllAchatsPaginated(achatCriteria, pageable)    ;
         return ResponseEntity.ok(achats.map(achatMapper::entityToDto));
     }
@@ -63,6 +65,13 @@ public class AchatController {
     public ResponseEntity<String> generateAchatReport(@PathVariable Long id) {
         return ResponseEntity.ok(rapportService.generateAchat(id));
     }
+
+    @PostMapping("/valide-achat/{id}")
+    public ResponseEntity<AchatDTO> valideAchat(@PathVariable Long id) {
+        Achat achat = achatService.valideAchat(id);
+        return ResponseEntity.ok(achatMapper.entityToDto(achat));
+    }
+
 
 
 }

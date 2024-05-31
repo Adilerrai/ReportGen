@@ -26,7 +26,6 @@ public class AchatCustomRepoImpl implements AchatCustomRepo {
     private Predicate generateWhere(AchatCriteria achatCriteria, CriteriaBuilder cb, Root<Achat> root) {
 
 
-
         {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -35,6 +34,7 @@ public class AchatCustomRepoImpl implements AchatCustomRepo {
             if (achatCriteria.getFournisseurId() != null) {
                 predicates.add(cb.equal(fournisseurAchatJoin.get(Fournisseur_.ID), achatCriteria.getFournisseurId()));
             }
+
             if (achatCriteria.getDateAchat() != null) {
                 predicates.add(cb.equal(root.get(Achat_.DATE_ACHAT), achatCriteria.getDateAchat()));
             }
@@ -70,7 +70,8 @@ public class AchatCustomRepoImpl implements AchatCustomRepo {
 
         CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
         Root<Achat> countRoot = countQuery.from(Achat.class);
-        countQuery.select(cb.count(countRoot)).where(predicate);
+        Predicate countPredicate = generateWhere(achatCriteria, cb, countRoot); // Create a new Predicate for the countQuery
+        countQuery.select(cb.count(countRoot)).where(countPredicate);
 
         Long count = entityManager.createQuery(countQuery).getSingleResult();
 
@@ -78,3 +79,20 @@ public class AchatCustomRepoImpl implements AchatCustomRepo {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
