@@ -11,4 +11,7 @@ public interface CaisseService {
     Caisse getCaisse(Long id);
 
     void deleteCaisse(Long id);
+
+
+    //ttest
 }
