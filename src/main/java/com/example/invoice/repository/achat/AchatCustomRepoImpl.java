@@ -24,6 +24,9 @@ public class AchatCustomRepoImpl implements AchatCustomRepo {
 
 
     private Predicate generateWhere(AchatCriteria achatCriteria, CriteriaBuilder cb, Root<Achat> root) {
+
+
+
         {
             List<Predicate> predicates = new ArrayList<>();
 

@@ -3,7 +3,6 @@ package com.example.invoice.model;
 
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 
 @Entity
 public class DetAchat {

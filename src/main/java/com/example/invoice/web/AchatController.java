@@ -1,6 +1,7 @@
 package com.example.invoice.web;
 
 import com.example.invoice.dto.AchatDTO;
+import com.example.invoice.fileGeneration.ReportService;
 import com.example.invoice.model.Achat;
 import com.example.invoice.model.AchatCriteria;
 import com.example.invoice.service.AchatService;
@@ -18,9 +19,12 @@ public class AchatController {
     private final AchatService achatService;
     private final AchatMapper achatMapper;
 
-    public AchatController(AchatServiceImpl achatServiceImpl, AchatMapper achatMapper) {
+    private final ReportService rapportService;
+
+    public AchatController(AchatServiceImpl achatServiceImpl, AchatMapper achatMapper, ReportService rapportService) {
         this.achatService = achatServiceImpl;
         this.achatMapper = achatMapper;
+        this.rapportService = rapportService;
     }
 
     @PostMapping("/nouvelle-achat")
@@ -53,6 +57,11 @@ public class AchatController {
     public ResponseEntity<Page<AchatDTO>> getAllAchatsPaginated(@RequestBody AchatCriteria achatCriteria, Pageable pageable) {
         Page<Achat> achats = achatService.getAllAchatsPaginated(achatCriteria, pageable)    ;
         return ResponseEntity.ok(achats.map(achatMapper::entityToDto));
+    }
+
+    @GetMapping("/rapport-achat/{id}")
+    public ResponseEntity<String> generateAchatReport(@PathVariable Long id) {
+        return ResponseEntity.ok(rapportService.generateAchat(id));
     }
 
 

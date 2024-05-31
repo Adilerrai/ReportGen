@@ -57,6 +57,8 @@ public class Achat {
         this.dateAchat = dateAchat;
     }
 
+
+
     public Long getId() {
         return id;
     }
