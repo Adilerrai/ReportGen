@@ -14,12 +14,4 @@ public interface DetAchatMapper {
     @InheritInverseConfiguration
     DetAchat toEntity(DetAchatDTO detAchatDTO);
 
-    default DetAchat fromId(Long id) {
-        if (id == null) {
-            return null;
-        }
-        DetAchat detAchat = new DetAchat();
-        detAchat.setId(id);
-        return detAchat;
-    }
 }
