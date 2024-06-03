@@ -81,7 +81,7 @@
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Client Email:]]></text>
+                <text><![CDATA[Supplier Email:]]></text>
             </staticText>
             <textField>
                 <reportElement x="150" y="0" width="200" height="20" uuid="56fa07cc-0f8b-4f80-8429-2e43219f7c4d"/>
@@ -92,7 +92,7 @@
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Client Phone:]]></text>
+                <text><![CDATA[Supplier Phone:]]></text>
             </staticText>
             <textField>
                 <reportElement x="150" y="20" width="200" height="20" uuid="4b3a61e2-fd98-4870-995a-02808133e600"/>
