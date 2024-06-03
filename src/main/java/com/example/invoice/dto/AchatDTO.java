@@ -1,12 +1,6 @@
 package com.example.invoice.dto;
 
 import com.example.invoice.enums.StatusAchat;
-import com.example.invoice.model.DetAchat;
-import com.example.invoice.model.Fournisseur;
-import com.example.invoice.model.Produit;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 
 import java.math.BigDecimal;

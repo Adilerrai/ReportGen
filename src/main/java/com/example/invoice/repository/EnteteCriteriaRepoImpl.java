@@ -1,6 +1,4 @@
 package com.example.invoice.repository;
-
-
 import com.example.invoice.dto.EnteteRechercheDTO;
 import com.example.invoice.model.DetFacture;
 import com.example.invoice.model.EnteteFact;
@@ -41,7 +39,7 @@ public class EnteteCriteriaRepoImpl implements EnteteCriteriaRepo {
             predicates.add(cb.equal(rootEntete.get(EnteteFact_.numeroFacture), enteteRechercheDTO.getNumeroFacture()));
         }
 
-if (enteteRechercheDTO.getDateFacture() != null) {
+        if (enteteRechercheDTO.getDateFacture() != null) {
             predicates.add(cb.equal(rootEntete.get(EnteteFact_.dateFacture), enteteRechercheDTO.getDateFacture()));
         }
 
