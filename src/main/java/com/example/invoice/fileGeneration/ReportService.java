@@ -19,7 +19,6 @@ import java.util.*;
 public class ReportService {
 
 
-
     private final AchatRepository achatRepository;
 
     private  final EnteteRepository enteteRepository;

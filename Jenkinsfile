@@ -27,24 +27,24 @@ pipeline {
             }
         }
 
-        stage('Docker Build') {
-            steps {
-                script {
-                    docker.build("my-image:latest")
-                }
-            }
-        }
-
-        stage('Docker Push') {
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-                        docker.image("my-image:latest").push()
-                    }
-                }
-            }
-        }
-    }
+//         stage('Docker Build') {
+//             steps {
+//                 script {
+//                     docker.build("my-image:latest")
+//                 }
+//             }
+//         }
+//
+//         stage('Docker Push') {
+//             steps {
+//                 script {
+//                     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+//                         docker.image("my-image:latest").push()
+//                     }
+//                 }
+//             }
+//         }
+//     }
 
     post {
         success {
