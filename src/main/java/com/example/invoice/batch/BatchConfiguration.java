@@ -49,7 +49,7 @@ public class BatchConfiguration {
         return new JpaPagingItemReaderBuilder<EnteteFact>()
                 .name("enteteFactReader")
                 .entityManagerFactory(entityManagerFactory)
-                .queryString("select e from EnteteFact e where e.createdDate = current_date")
+                .queryString("select e from EnteteFact e where e.statut = 'REGLE'")
                 .build();
     }
 
