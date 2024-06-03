@@ -4,8 +4,6 @@ pipeline {
     tools {
         maven 'mvn'
         jdk 'java17'
-        // Make sure Docker is installed and configured in Jenkins
-        docker 'docker'
     }
 
     stages {
