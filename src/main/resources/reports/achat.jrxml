@@ -21,22 +21,8 @@
             <pen lineWidth="0.5" lineColor="#000000"/>
         </box>
     </style>
-    <subDataset name="Dataset1" uuid="935987fb-21f7-4bca-ad39-961e7491b7a3">
-        <parameter name="montantTotalParProduit" class="java.math.BigDecimal"/>
-        <field name="id" class="java.lang.Long"/>
-        <field name="produit.designation" class="java.lang.String"/>
-        <field name="quantiteAchete" class="java.lang.Integer"/>
-        <field name="prixUnitaire" class="java.lang.Double"/>
-    </subDataset>
     <parameter name="CollectionBeanParam" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
     <parameter name="total" class="java.math.BigDecimal"/>
-    <field name="id" class="java.lang.Long"/>
-    <field name="totalAchat" class="java.math.BigDecimal"/>
-    <field name="fournisseur.id" class="java.lang.Long"/>
-    <field name="fournisseur.email" class="java.lang.String"/>
-    <field name="dateAchat" class="java.sql.Date"/>
-    <field name="fournisseur.telephone" class="java.lang.String"/>
-    <field name="detAchats" class="java.util.List"/>
     <title>
         <band height="30">
             <staticText>

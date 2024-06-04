@@ -6,6 +6,10 @@ import com.example.invoice.repository.EnteteRepository;
 import com.example.invoice.repository.achat.AchatRepository;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JRDesignDataset;
+import net.sf.jasperreports.engine.design.JRDesignField;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import org.springframework.stereotype.Service;
 
 
@@ -67,10 +71,9 @@ public class ReportService {
         }
     }
 
-
     public String generateAchat(Long id) {
         try {
-            // Fetch data
+            // Fetch data from repo
             List<Achat> achatList = new ArrayList<>();
 
             Achat achat = achatRepository.findById(id).get();
@@ -80,15 +83,53 @@ public class ReportService {
             String outputFileName = "achat_" + achat.getId() + ".pdf";
             String reportPath = "src/main/resources/reports/achat.jrxml";
 
-            JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
+            // Load the main report design to modify it
+            JasperDesign jasperDesign = JRXmlLoader.load(reportPath);
+
+            // Create a new subdataset
+            JRDesignDataset subDataset = new JRDesignDataset(false);
+
+
+
+
+
+
+
+
+
+            // Set the name of the subdataset
+            subDataset.setName("Dataset1");
+
+            // Add fields to the subdataset (id , designation, quantiteAchete, prixUnitaire)
+            addFieldToDataset(subDataset, "id", Long.class);
+            addFieldToDataset(subDataset, "produit.designation", String.class);
+            addFieldToDataset(subDataset, "quantiteAchete", Integer.class);
+            addFieldToDataset(subDataset, "prixUnitaire", Double.class);
+
+            // Add the subdataset to the main report design to put it in the report
+            jasperDesign.addDataset(subDataset);
+
+            // Add fields to the main dataset
+            addFieldToDataset(jasperDesign.getMainDesignDataset(), "fournisseur.email", String.class);
+            addFieldToDataset(jasperDesign.getMainDesignDataset(), "fournisseur.telephone", String.class);
+            addFieldToDataset(jasperDesign.getMainDesignDataset(), "id", Long.class);
+            addFieldToDataset(jasperDesign.getMainDesignDataset(), "dateAchat", java.sql.Date.class);
+            addFieldToDataset(jasperDesign.getMainDesignDataset(), "detAchats", List.class);
+
+
+
+
+
+
+
+            // Compile the report design into a JasperReport
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(achatList);
 
             BigDecimal total = achat.getTotalAchat();
 
-
             Map<String, Object> parameters = new HashMap<>();
-
             parameters.put("total", total);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, jrBeanCollectionDataSource);
@@ -99,4 +140,15 @@ public class ReportService {
             e.printStackTrace();
             return "Error occurred while generating report";
         }
-    }}
+    }
+
+    private void addFieldToDataset(JRDesignDataset dataset, String fieldName, Class<?> valueClass) throws JRException {
+        JRDesignField field = new JRDesignField();
+        field.setName(fieldName);
+        field.setValueClass(valueClass);
+        dataset.addField(field);
+    }
+
+
+
+}
