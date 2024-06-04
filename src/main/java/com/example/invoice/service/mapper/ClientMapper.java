@@ -6,11 +6,10 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", uses = {})
-public interface ClientMapper {
+public abstract class ClientMapper {
 
+    public abstract ClientDTO entityToDto(Client client);
 
-          ClientDTO entityToDto(Client client);
-
-          @InheritInverseConfiguration
-          Client dtoToEntity(ClientDTO clientDTO);
+    @InheritInverseConfiguration
+    public abstract Client dtoToEntity(ClientDTO clientDTO);
 }

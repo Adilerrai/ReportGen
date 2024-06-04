@@ -53,10 +53,8 @@ public class AchatServiceImpl implements AchatService {
 
         achat.setDateAchat(new java.sql.Date(System.currentTimeMillis()));
 
-        // Save Achat first
         achat = achatRepository.save(achat);
 
-        // Create new DetAchat and update the quantity of the product
         for (DetAchat detAchat : achat.getDetAchats()) {
             Produit produit = produitRepository.findById(detAchat.getProduit().getId())
                     .orElseThrow(() -> new RuntimeException("Produit non trouvé"));
@@ -76,7 +74,6 @@ public class AchatServiceImpl implements AchatService {
             BigDecimal totalDetAchat = BigDecimal.valueOf(detAchat.getQuantiteAchete()).multiply(BigDecimal.valueOf(detAchat.getPrixUnitaire()));
             totalAchat = totalAchat.add(totalDetAchat);
 
-            // Create new DetAchat
             DetAchat newDetAchat = new DetAchat();
             newDetAchat.setProduit(produit);
             newDetAchat.setAchat(achat);
@@ -87,7 +84,6 @@ public class AchatServiceImpl implements AchatService {
 
         achat.setTotalAchat(totalAchat);
 
-        // Update Caisse
         Caisse caisse = caisseRepository.findById(1L)
                 .orElseThrow(() -> new RuntimeException("Caisse non trouvée"));
 
@@ -134,6 +130,9 @@ public class AchatServiceImpl implements AchatService {
         Achat achat = achatRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Achat non trouvé"));
 
+        if (achat.getStatusAchat().equals(StatusAchat.REGLE)) {
+            throw new RuntimeException("Achat déjà validé");
+        }
         achat.setStatusAchat(StatusAchat.REGLE);
                 return achatRepository.save(achat);
     }

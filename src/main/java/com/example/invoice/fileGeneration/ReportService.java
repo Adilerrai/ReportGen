@@ -1,5 +1,6 @@
 package com.example.invoice.fileGeneration;
 
+import com.example.invoice.enums.StatusAchat;
 import com.example.invoice.model.Achat;
 import com.example.invoice.model.EnteteFact;
 import com.example.invoice.repository.EnteteRepository;
@@ -33,6 +34,8 @@ public class ReportService {
     }
 
     public String generateEntete(Long id) {
+
+
         try {
             // Fetch data
             List<EnteteFact> enteteList = new ArrayList<>();
@@ -71,6 +74,10 @@ public class ReportService {
         }
     }
 
+
+
+
+
     public String generateAchat(Long id) {
         try {
             // Fetch data from repo
@@ -90,11 +97,6 @@ public class ReportService {
 
 
 
-
-
-
-
-
             subDataset.setName("Dataset1");
 
             // Add fields to the subdataset (id , designation, quantiteAchete, prixUnitaire)
@@ -105,14 +107,14 @@ public class ReportService {
 
             jasperDesign.addDataset(subDataset);
 
+
             // Add fields to the main dataset
             addFieldToDataset(jasperDesign.getMainDesignDataset(), "fournisseur.email", String.class);
             addFieldToDataset(jasperDesign.getMainDesignDataset(), "fournisseur.telephone", String.class);
             addFieldToDataset(jasperDesign.getMainDesignDataset(), "id", Long.class);
             addFieldToDataset(jasperDesign.getMainDesignDataset(), "dateAchat", java.sql.Date.class);
             addFieldToDataset(jasperDesign.getMainDesignDataset(), "detAchats", List.class);
-
-
+            addFieldToDataset(jasperDesign.getMainDesignDataset(), "statusAchat", StatusAchat.class);
 
 
 
@@ -135,6 +137,7 @@ public class ReportService {
             return "Error occurred while generating report";
         }
     }
+
 
 
     private void addFieldToDataset(JRDesignDataset dataset, String fieldName, Class<?> valueClass) throws JRException {

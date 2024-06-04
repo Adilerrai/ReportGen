@@ -27,7 +27,7 @@ public class Produit {
         this.id = id;
         this.designation = designation;
         this.prixUnitaire = prixUnitaire;
-        Description = description;
+        this.Description = description;
     }
 
     public Produit() {

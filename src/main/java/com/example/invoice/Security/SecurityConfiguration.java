@@ -1,7 +1,7 @@
 package com.example.invoice.Security;
 
 import com.example.invoice.Exceptions.SecurityException.CustomAccessDeniedHandler;
-import com.example.invoice.Exceptions.SecurityException.Http401UnauthorizedEntryPoint;
+//import com.example.invoice.Exceptions.SecurityException.Http401UnauthorizedEntryPoint;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -27,13 +27,13 @@ public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
-    private final Http401UnauthorizedEntryPoint unauthorizedEntryPoint;
+//    private final Http401UnauthorizedEntryPoint unauthorizedEntryPoint;
     private final CustomAccessDeniedHandler accessDeniedHandler;
 
-    public SecurityConfiguration(JwtAuthenticationFilter jwtAuthenticationFilter, AuthenticationProvider authenticationProvider, Http401UnauthorizedEntryPoint unauthorizedEntryPoint, CustomAccessDeniedHandler accessDeniedHandler) {
+    public SecurityConfiguration(JwtAuthenticationFilter jwtAuthenticationFilter, AuthenticationProvider authenticationProvider,  CustomAccessDeniedHandler accessDeniedHandler) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.authenticationProvider = authenticationProvider;
-        this.unauthorizedEntryPoint = unauthorizedEntryPoint;
+//        this.unauthorizedEntryPoint = unauthorizedEntryPoint;
         this.accessDeniedHandler = accessDeniedHandler;
     }
 
@@ -41,7 +41,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception
-                        .authenticationEntryPoint(unauthorizedEntryPoint)
+//                        .authenticationEntryPoint(unauthorizedEntryPoint)
                         .accessDeniedHandler(accessDeniedHandler))
                 .authorizeHttpRequests(request ->
                         request
