@@ -3,24 +3,16 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-    <changeSet id="7" author="adil">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <columnExists tableName="entete_fact" columnName="created_date" ></columnExists>
-            </not>
-        </preConditions>
-        <addColumn tableName="entete_fact">
-            <column name="created_date" type="date">
-                <constraints nullable="true" />
-            </column>
-        </addColumn>
-        <sql>
-            UPDATE entete_fact
-            SET created_date = '2023-12-06'
-            WHERE created_date IS NULL;
-        </sql>
-    </changeSet>
+
+
+
+
+
+    <include file="db.changelog-1.0.xml" relativeToChangelogFile="true"/>
+
+
+
 
 </databaseChangeLog>

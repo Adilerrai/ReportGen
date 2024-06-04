@@ -83,10 +83,8 @@ public class ReportService {
             String outputFileName = "achat_" + achat.getId() + ".pdf";
             String reportPath = "src/main/resources/reports/achat.jrxml";
 
-            // Load the main report design to modify it
             JasperDesign jasperDesign = JRXmlLoader.load(reportPath);
 
-            // Create a new subdataset
             JRDesignDataset subDataset = new JRDesignDataset(false);
 
 
@@ -97,7 +95,6 @@ public class ReportService {
 
 
 
-            // Set the name of the subdataset
             subDataset.setName("Dataset1");
 
             // Add fields to the subdataset (id , designation, quantiteAchete, prixUnitaire)
@@ -106,7 +103,6 @@ public class ReportService {
             addFieldToDataset(subDataset, "quantiteAchete", Integer.class);
             addFieldToDataset(subDataset, "prixUnitaire", Double.class);
 
-            // Add the subdataset to the main report design to put it in the report
             jasperDesign.addDataset(subDataset);
 
             // Add fields to the main dataset
@@ -121,8 +117,6 @@ public class ReportService {
 
 
 
-
-            // Compile the report design into a JasperReport
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(achatList);
@@ -141,6 +135,7 @@ public class ReportService {
             return "Error occurred while generating report";
         }
     }
+
 
     private void addFieldToDataset(JRDesignDataset dataset, String fieldName, Class<?> valueClass) throws JRException {
         JRDesignField field = new JRDesignField();
