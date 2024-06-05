@@ -27,7 +27,7 @@ public class EnteteAchat {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private    Fournisseur fournisseur;
-
+    @Enumerated(EnumType.STRING)
     private StatusEnteteAchat statusEnteteAchat = StatusEnteteAchat.EN_ATTENTE;
 
     private Date dateEnteteAchat;

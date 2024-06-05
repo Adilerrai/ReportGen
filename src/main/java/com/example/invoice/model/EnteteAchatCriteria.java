@@ -1,6 +1,8 @@
 package com.example.invoice.model;
 
 import com.example.invoice.enums.StatusEnteteAchat;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 import java.sql.Date;
 
@@ -9,7 +11,6 @@ public class EnteteAchatCriteria {
 
 
     private    Long  fournisseurId;
-
     private StatusEnteteAchat statusEnteteAchat;
 
     private Date dateRecherheDebut;

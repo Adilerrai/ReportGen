@@ -22,12 +22,14 @@ public class EnteteVente {
     private Long numeroFacture;
 
     private Timestamp dateFacture;
+    @Enumerated(EnumType.STRING)
 
     private ModePaiement modePaiement;
 
     private Timestamp createdDate;
 
     private BigDecimal totalFacture = BigDecimal.ZERO;
+    @Enumerated(EnumType.STRING)
 
     private Status statut;
 
