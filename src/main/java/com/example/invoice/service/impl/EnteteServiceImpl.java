@@ -5,10 +5,8 @@ import com.example.invoice.dto.EnteteRechercheDTO;
 import com.example.invoice.model.Caisse;
 import com.example.invoice.model.DetVente;
 import com.example.invoice.model.EnteteVente;
-import com.example.invoice.repository.CaisseRepository;
-import com.example.invoice.repository.DetVenteRepository;
-import com.example.invoice.repository.EnteteCriteriaRepo;
-import com.example.invoice.repository.EnteteRepository;
+import com.example.invoice.model.Produit;
+import com.example.invoice.repository.*;
 import com.example.invoice.service.EnteteService;
 import com.example.invoice.service.mapper.EnteteMapper;
 import org.springframework.data.domain.Page;
@@ -16,9 +14,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
 
 
 import static java.time.LocalDate.now;
@@ -28,8 +26,7 @@ import static java.time.LocalDate.now;
 public class EnteteServiceImpl implements EnteteService {
 
 
-
-
+    private final ProduitRepository produitRepository;
     private EnteteRepository enteteRepository;
 
     private EnteteMapper enteteMapper;
@@ -41,12 +38,13 @@ public class EnteteServiceImpl implements EnteteService {
     private  final CaisseRepository caisseRepository;
 
 
-    public EnteteServiceImpl(EnteteRepository enteteRepository, DetVenteRepository DetVenteRepository, EnteteMapper enteteMapper, EnteteCriteriaRepo enteteCriteriaRepo, CaisseRepository caisseRepository) {
+    public EnteteServiceImpl(EnteteRepository enteteRepository, DetVenteRepository DetVenteRepository, EnteteMapper enteteMapper, EnteteCriteriaRepo enteteCriteriaRepo, CaisseRepository caisseRepository, ProduitRepository produitRepository) {
         this.enteteRepository = enteteRepository;
         this.enteteMapper = enteteMapper;
         this.enteteCriteriaRepo = enteteCriteriaRepo;
         this.DetVenteRepository = DetVenteRepository;
         this.caisseRepository = caisseRepository;
+        this.produitRepository = produitRepository;
     }
 
 
@@ -72,22 +70,26 @@ public class EnteteServiceImpl implements EnteteService {
     public EnteteVenteDTO saveEntete(EnteteVenteDTO enteteDTO) {
 
 
-        System.out.println(enteteDTO.toString());
 
         EnteteVente EnteteVente = enteteMapper.dtoToEntity (enteteDTO);
-
-        System.out.println(EnteteVente.toString());
-
-        System.out.println(EnteteVente.getDetVentes());
 
 
         java.util.Date date = java.util.Date.from(now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         EnteteVente.setDateFacture(new java.sql.Timestamp(date.getTime()));
 
-        for (DetVente DetVente : EnteteVente.getDetVentes()) {
-            DetVenteRepository.save(DetVente);
-        }
+        for (DetVente detVente : EnteteVente.getDetVentes()) {
+            Optional<Produit> produitFromDb = produitRepository.findById(detVente.getProduit().getId());
+            BigDecimal unitPrice = produitFromDb.get().getPrixUnitaire();
+            int promotion = detVente.getPromotion();
 
+            if (promotion != 0){
+                BigDecimal discount = unitPrice.multiply(BigDecimal.valueOf(promotion)).divide(BigDecimal.valueOf(100));
+                unitPrice = unitPrice.subtract(discount);
+            }
+
+            detVente.setPrixUnitaire(unitPrice);
+            DetVenteRepository.save(detVente);
+        }
 
         BigDecimal totalAmount = enteteDTO.getDetVentes().stream()
                 .filter(DetVente -> DetVente.getMontantTotalParProduit() != null)

@@ -1,4 +1,4 @@
-package com.example.invoice.Security;
+package com.example.invoice.security;
 
 public class AuthenticationRequest {
     private String email;

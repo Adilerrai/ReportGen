@@ -1,11 +1,10 @@
-package com.example.invoice.Security;
+package com.example.invoice.security;
 
 
 
 import com.example.invoice.enums.TokenType;
 import com.example.invoice.model.User;
 import com.example.invoice.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

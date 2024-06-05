@@ -1,8 +1,5 @@
-package com.example.invoice.Security;
+package com.example.invoice.security;
 
-
-
-import lombok.Data;
 
 public class RefreshTokenRequest {
     private String refreshToken;

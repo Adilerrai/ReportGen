@@ -12,17 +12,29 @@ import java.util.Collection;
 @Table(name = "users")
 public class User implements UserDetails {
 
+
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
+
+
     private String firstname;
+
+
     private String lastname;
+
+
 
     @Column(unique = true)
     private String email;
 
+
+
     @StrongPassword
     private String password;
+
+
 
     @Enumerated(EnumType.STRING)
     private Role role;

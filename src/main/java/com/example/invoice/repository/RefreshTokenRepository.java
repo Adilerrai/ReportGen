@@ -1,7 +1,7 @@
 package com.example.invoice.repository;
 
 
-import com.example.invoice.Security.RefreshToken;
+import com.example.invoice.security.RefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

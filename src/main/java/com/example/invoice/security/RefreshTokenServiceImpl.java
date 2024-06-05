@@ -1,4 +1,4 @@
-package com.example.invoice.Security;
+package com.example.invoice.security;
 
 
 
@@ -7,7 +7,6 @@ import com.example.invoice.enums.TokenType;
 import com.example.invoice.model.User;
 import com.example.invoice.repository.RefreshTokenRepository;
 import com.example.invoice.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

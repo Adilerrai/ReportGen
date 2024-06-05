@@ -21,8 +21,23 @@
             <pen lineWidth="0.5" lineColor="#000000"/>
         </box>
     </style>
+    <subDataset name="Dataset1" uuid="935987fb-21f7-4bca-ad39-961e7491b7a3">
+        <field name="produit.id" class="java.lang.Long"/>
+        <field name="produit.designation" class="java.lang.String"/>
+        <field name="quantite" class="java.lang.Long"/>
+        <field name="prixUnitaire" class="java.math.BigDecimal"/>
+        <field name="montantTotalParProduit" class="java.math.BigDecimal"/>
+    </subDataset>
     <parameter name="CollectionBeanParam" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
     <parameter name="total" class="java.math.BigDecimal"/>
+    <field name="id" class="java.lang.Integer"/>
+    <field name="numeroFacture" class="java.lang.Long"/>
+    <field name="dateFacture" class="java.util.Date"/>
+    <field name="modePaiement" class="java.lang.String"/>
+    <field name="statut" class="java.lang.String"/>
+    <field name="client.email" class="java.lang.String"/>
+    <field name="client.telephone" class="java.lang.String"/>
+    <field name="detVentes" class="java.util.List"/>
     <title>
         <band height="30">
             <staticText>
@@ -30,7 +45,7 @@
                 <textElement textAlignment="Center">
                     <font size="18" isBold="true"/>
                 </textElement>
-                <text><![CDATA[EnteteAchat Recap]]></text>
+                <text><![CDATA[Invoice]]></text>
             </staticText>
         </band>
     </title>
@@ -45,7 +60,7 @@
             </staticText>
             <textField>
                 <reportElement x="150" y="0" width="100" height="20" uuid="22c1a1e7-41b4-4ef8-9d9e-4ed8f82f7b12"/>
-                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{numeroFacture}]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement x="0" y="20" width="150" height="20" uuid="a9cfb8dc-1b88-4d84-b8c2-b22a77e02d8d"/>
@@ -56,36 +71,36 @@
             </staticText>
             <textField>
                 <reportElement x="150" y="20" width="100" height="20" uuid="d287a29a-4735-48e7-95fc-8c01b0c2262b"/>
-                <textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dateEnteteAchat})]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dateFacture})]]></textFieldExpression>
             </textField>
         </band>
     </pageHeader>
     <detail>
-        <band height="230">
+        <band height="200">
             <staticText>
                 <reportElement x="0" y="0" width="150" height="20" uuid="2f9c10ea-9277-4f21-91bb-7f5c058c4865"/>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Supplier Email:]]></text>
+                <text><![CDATA[Client Email:]]></text>
             </staticText>
             <textField>
                 <reportElement x="150" y="0" width="200" height="20" uuid="56fa07cc-0f8b-4f80-8429-2e43219f7c4d"/>
-                <textFieldExpression><![CDATA[$F{fournisseur.email}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{client.email}]]></textFieldExpression>
             </textField>
             <staticText>
                 <reportElement x="0" y="20" width="150" height="20" uuid="e5db1e04-7368-42a7-a78e-0a4d8c3d9f62"/>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Supplier Phone:]]></text>
+                <text><![CDATA[Client Phone:]]></text>
             </staticText>
             <textField>
                 <reportElement x="150" y="20" width="200" height="20" uuid="4b3a61e2-fd98-4870-995a-02808133e600"/>
-                <textFieldExpression><![CDATA[$F{fournisseur.telephone}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{client.telephone}]]></textFieldExpression>
             </textField>
             <componentElement>
-                <reportElement x="0" y="70" width="555" height="60" uuid="78071fd4-04cf-4be3-a3ac-9585befa7280">
+                <reportElement x="0" y="70" width="555" height="90" uuid="78071fd4-04cf-4be3-a3ac-9585befa7280">
                     <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
                     <property name="com.jaspersoft.studio.table.style.table_header" value="Table_2_TH"/>
                     <property name="com.jaspersoft.studio.table.style.column_header" value="Table_2_CH"/>
@@ -93,7 +108,7 @@
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                     <datasetRun subDataset="Dataset1" uuid="eea62785-be0a-4861-9a27-91d9efacb061">
-                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detAchats})]]></dataSourceExpression>
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detVentes})]]></dataSourceExpression>
                     </datasetRun>
                     <jr:column width="40" uuid="2e38b388-4433-4410-a585-d81d92ae7609">
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
@@ -106,7 +121,7 @@
                         <jr:detailCell style="Table_2_TD" height="30">
                             <textField>
                                 <reportElement x="0" y="0" width="40" height="30" uuid="d6dcf477-0998-404b-9f0e-b566a504c865"/>
-                                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+                                <textFieldExpression><![CDATA[$F{produit.id}]]></textFieldExpression>
                             </textField>
                         </jr:detailCell>
                     </jr:column>
@@ -136,8 +151,7 @@
                         <jr:detailCell style="Table_2_TD" height="30">
                             <textField>
                                 <reportElement x="0" y="0" width="140" height="30" uuid="d462675d-ca72-4ed2-97ae-4c5ed1750a65"/>
-                                <textElement textAlignment="Center"/>
-                                <textFieldExpression><![CDATA[$F{quantiteAchete}]]></textFieldExpression>
+                                <textFieldExpression><![CDATA[$F{quantite}]]></textFieldExpression>
                             </textField>
                         </jr:detailCell>
                     </jr:column>
@@ -152,7 +166,6 @@
                         <jr:detailCell style="Table_2_TD" height="30">
                             <textField>
                                 <reportElement x="0" y="0" width="105" height="30" uuid="d6dcf477-0998-404b-9f0e-b566a504c865"/>
-                                <textElement textAlignment="Center"/>
                                 <textFieldExpression><![CDATA[$F{prixUnitaire}]]></textFieldExpression>
                             </textField>
                         </jr:detailCell>
@@ -168,23 +181,19 @@
                         <jr:detailCell style="Table_2_TD" height="30">
                             <textField>
                                 <reportElement x="0" y="0" width="125" height="30" uuid="6edd1452-e6ec-4721-bcd0-26c39363f288"/>
-                                <textFieldExpression><![CDATA[$F{totalParProduit}]]></textFieldExpression>
+                                <textFieldExpression><![CDATA[$F{montantTotalParProduit}]]></textFieldExpression>
                             </textField>
                         </jr:detailCell>
                     </jr:column>
                 </jr:table>
             </componentElement>
             <staticText>
-                <reportElement x="380" y="210" width="100" height="20" uuid="8c4b6c5e-c1d6-4a6e-819e-42b3b5bc0135"/>
+                <reportElement x="400" y="180" width="100" height="20" uuid="8c4b6c5e-c1d6-4a6e-819e-42b3b5bc0135"/>
                 <text><![CDATA[Total Amount:]]></text>
             </staticText>
             <textField>
-                <reportElement x="480" y="210" width="100" height="20" uuid="04f8a4da-9f1e-4b3e-9fbb-305cb9eb7d2d"/>
+                <reportElement x="500" y="180" width="100" height="20" uuid="04f8a4da-9f1e-4b3e-9fbb-305cb9eb7d2d"/>
                 <textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="380" y="170" width="200" height="20" uuid="af4f1148-c768-43d2-a654-bf7e0ea627eb"/>
-                <textFieldExpression><![CDATA[$F{statusEnteteAchat}]]></textFieldExpression>
             </textField>
         </band>
     </detail>

@@ -1,4 +1,4 @@
-package com.example.invoice.Security;
+package com.example.invoice.security;
 
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.FilterChain;

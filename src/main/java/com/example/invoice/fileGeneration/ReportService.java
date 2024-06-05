@@ -33,7 +33,7 @@ public class ReportService {
         this.enteteAchatRepository = enteteAchatRepository;
     }
 
-    public String generateEntete(Long id) {
+    public String generateVente(Long id) {
 
 
 
@@ -46,9 +46,8 @@ public class ReportService {
             enteteList.add(entete);
 
             String outputDirectory = "src/main/resources/reports/";
-            String outputFileName = "Invoice.pdf";
-
-            String reportPath = "src/main/resources/reports/Invoice.jrxml";
+            String outputFileName = "Vente_" + entete.getId() + ".pdf";
+            String reportPath = "src/main/resources/reports/Vente.jrxml";
             JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
 
 
@@ -87,12 +86,13 @@ public class ReportService {
             // Fetch data from repo
             List<EnteteAchat> EnteteAchatList = new ArrayList<>();
 
-            EnteteAchat EnteteAchat = enteteAchatRepository.findById(id).get();
-            EnteteAchatList.add(EnteteAchat);
+            EnteteAchat enteteAchat = enteteAchatRepository.findById(id).get();
+            EnteteAchatList.add(enteteAchat);
+
 
             String outputDirectory = "src/main/resources/reports/";
-            String outputFileName = "EnteteAchat_" + EnteteAchat.getId() + ".pdf";
-            String reportPath = "src/main/resources/reports/EnteteAchat.jrxml";
+            String outputFileName = "Achat_" + enteteAchat.getId().hashCode() + ".pdf";
+            String reportPath = "src/main/resources/reports/Achat.jrxml";
 
             JasperDesign jasperDesign = JRXmlLoader.load(reportPath);
 
@@ -104,7 +104,7 @@ public class ReportService {
             subDataset.setName("Dataset1");
 
             // Add fields to the subdataset (id , designation, quantiteAchete, prixUnitaire)
-            addFieldToDataset(subDataset, "id", Long.class);
+            addFieldToDataset(subDataset, "produit.id", Long.class);
             addFieldToDataset(subDataset, "produit.designation", String.class);
             addFieldToDataset(subDataset, "quantiteAchete", Integer.class);
             addFieldToDataset(subDataset, "prixUnitaire", Double.class);
@@ -128,7 +128,7 @@ public class ReportService {
 
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(EnteteAchatList);
 
-            BigDecimal total = EnteteAchat.getTotalEnteteAchat();
+            BigDecimal total = enteteAchat.getTotalEnteteAchat();
 
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("total", total);

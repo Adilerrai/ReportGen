@@ -1,6 +1,3 @@
-
-
-
 create table batch_job_instance
 (
     job_instance_id bigint       not null
@@ -12,6 +9,8 @@ create table batch_job_instance
         unique (job_name, job_key)
 );
 
+alter table batch_job_instance
+    owner to postgres;
 
 create table batch_job_execution
 (
@@ -30,6 +29,8 @@ create table batch_job_execution
     last_updated     timestamp
 );
 
+alter table batch_job_execution
+    owner to postgres;
 
 create table batch_job_execution_params
 (
@@ -42,6 +43,8 @@ create table batch_job_execution_params
     identifying      char         not null
 );
 
+alter table batch_job_execution_params
+    owner to postgres;
 
 create table batch_step_execution
 (
@@ -69,6 +72,8 @@ create table batch_step_execution
     last_updated       timestamp
 );
 
+alter table batch_step_execution
+    owner to postgres;
 
 create table batch_step_execution_context
 (
@@ -80,6 +85,8 @@ create table batch_step_execution_context
     serialized_context text
 );
 
+alter table batch_step_execution_context
+    owner to postgres;
 
 create table batch_job_execution_context
 (
@@ -91,11 +98,86 @@ create table batch_job_execution_context
     serialized_context text
 );
 
+alter table batch_job_execution_context
+    owner to postgres;
 
-create table _user
+create table achat
+(
+    id             bigserial
+        primary key,
+    date_achat     date,
+    status_achat   smallint
+        constraint achat_status_achat_check
+            check ((status_achat >= 0) AND (status_achat <= 2)),
+    total_achat    numeric(38, 2),
+    fournisseur_id bigint
+);
+
+alter table achat
+    owner to postgres;
+
+create table entete_fact
+(
+    id             bigserial
+        primary key,
+    created_date   timestamp(6),
+    date_facture   timestamp(6),
+    mode_paiement  smallint
+        constraint entete_fact_mode_paiement_check
+            check ((mode_paiement >= 0) AND (mode_paiement <= 3)),
+    numero_facture bigint,
+    statut         smallint
+        constraint entete_fact_statut_check
+            check ((statut >= 0) AND (statut <= 2)),
+    total_facture  numeric(38, 2),
+    client_id      bigint
+);
+
+alter table entete_fact
+    owner to postgres;
+
+create table client_entete_facts
+(
+    client_id       bigint not null,
+    entete_facts_id bigint not null
+        constraint uk_lwnv0efiv09gir2rld1ly86fq
+            unique
+        constraint fklarok3cb5j3tg9ioo92e40vao
+            references entete_fact
+);
+
+alter table client_entete_facts
+    owner to postgres;
+
+create table entete_fact_det_factures
+(
+    entete_fact_id  bigint not null
+        constraint fk19g57uht1lb5b2wr5q9kuyiwv
+            references entete_fact,
+    det_factures_id bigint not null
+        constraint uk_fqdgnfws481838v5cwdy7f3hj
+            unique
+);
+
+alter table entete_fact_det_factures
+    owner to postgres;
+
+create table entete_vente_det_factures
+(
+    entete_vente_id bigint not null,
+    det_factures_id bigint not null
+        constraint uk_6a9a4i6vcwg9n61m9e8fug2f
+            unique
+);
+
+alter table entete_vente_det_factures
+    owner to postgres;
+
+create table users
 (
     id        bigint not null
-        primary key,
+        constraint _user_pkey
+            primary key,
     email     varchar(255)
         constraint uk_k11y3pdtsrjgy8w9b6q4bjwrx
             unique,
@@ -107,30 +189,35 @@ create table _user
             check ((role)::text = ANY ((ARRAY ['ADMIN'::character varying, 'USER'::character varying])::text[]))
 );
 
+alter table users
+    owner to postgres;
 
 create table arrete_de_caisse
 (
-    id             bigserial
+    id                 bigserial
         primary key,
-    total_EnteteAchat    numeric(38, 2),
-    total_benefice numeric(38, 2),
-    total_depense  numeric(38, 2),
-    total_vente    numeric(38, 2)
+    total_benefice     numeric(38, 2),
+    total_depense      numeric(38, 2),
+    total_entete_achat numeric(38, 2),
+    total_vente        numeric(38, 2)
 );
 
+alter table arrete_de_caisse
+    owner to postgres;
 
 create table caisse
 (
-    id              bigserial
+    id                  bigserial
         primary key,
-    difference      numeric(38, 2),
-    solde_de_caisse numeric(38, 2),
-    total_EnteteAchats    numeric(38, 2),
-    total_depenses  numeric(38, 2),
-    total_ventes    numeric(38, 2)
+    difference          numeric(38, 2),
+    solde_de_caisse     numeric(38, 2),
+    total_depenses      numeric(38, 2),
+    total_entete_achats numeric(38, 2),
+    total_ventes        numeric(38, 2)
 );
 
-
+alter table caisse
+    owner to postgres;
 
 create table client
 (
@@ -143,32 +230,45 @@ create table client
     telephone varchar(255)
 );
 
+alter table client
+    owner to postgres;
 
-
-create table entete_fact
+create table entete_vente
 (
-    id             bigserial primary key,
+    id             bigserial
+        primary key,
     created_date   timestamp(6),
     date_facture   timestamp(6),
     mode_paiement  smallint
-        constraint entete_fact_mode_paiement_check
+        constraint entete_vente_mode_paiement_check
             check ((mode_paiement >= 0) AND (mode_paiement <= 3)),
     numero_facture bigint,
     statut         smallint
-        constraint entete_fact_statut_check
+        constraint entete_vente_statut_check
             check ((statut >= 0) AND (statut <= 2)),
     total_facture  numeric(38, 2),
-    client_id      bigint REFERENCES client
+    client_id      bigint
+        constraint fk1878doyhihjfiugd7mnabqsay
+            references client
 );
 
+alter table entete_vente
+    owner to postgres;
 
-CREATE TABLE client_entete_facts
+create table client_entete_ventes
 (
-    client_id       BIGINT NOT NULL REFERENCES client,
-    entete_facts_id BIGINT NOT NULL UNIQUE REFERENCES entete_fact
+    client_id        bigint not null
+        constraint fk1oe0udo91g64eq458havxwomw
+            references client,
+    entete_ventes_id bigint not null
+        constraint uk_k9tvjqwbmtvq5o17dtovw4kht
+            unique
+        constraint fkrrceyqmqfo7eg3pxqw2gh8rf7
+            references entete_vente
 );
 
-
+alter table client_entete_ventes
+    owner to postgres;
 
 create table fournisseur
 (
@@ -181,17 +281,25 @@ create table fournisseur
     telephone           varchar(255)
 );
 
+alter table fournisseur
+    owner to postgres;
 
-
-CREATE TABLE EnteteAchat
+create table entete_achat
 (
-    id             BIGSERIAL PRIMARY KEY,
-    date_EnteteAchat     DATE,
-    status_EnteteAchat   SMALLINT CHECK (status_EnteteAchat >= 0 AND status_EnteteAchat <= 2),
-    total_EnteteAchat    NUMERIC(38, 2),
-    fournisseur_id BIGINT REFERENCES fournisseur
+    id                  bigserial
+        primary key,
+    date_entete_achat   date,
+    status_entete_achat smallint
+        constraint entete_achat_status_entete_achat_check
+            check ((status_entete_achat >= 0) AND (status_entete_achat <= 2)),
+    total_entete_achat  numeric(38, 2),
+    fournisseur_id      bigint
+        constraint fka8cqiggix4kpnttyhdi8vd4dn
+            references fournisseur
 );
 
+alter table entete_achat
+    owner to postgres;
 
 create table produit
 (
@@ -203,42 +311,76 @@ create table produit
     quantite      integer not null
 );
 
+alter table produit
+    owner to postgres;
 
-
-CREATE TABLE det_facture
+create table det_facture
 (
-    id                        BIGSERIAL PRIMARY KEY,
-    montant_total_par_produit NUMERIC(38, 2),
-    prix_unitaire             NUMERIC(38, 2),
-    quantite                  BIGINT,
-    facture_id                BIGINT REFERENCES entete_fact,
-    produit_id                BIGINT REFERENCES produit
+    id                        bigserial
+        primary key,
+    montant_total_par_produit numeric(38, 2),
+    prix_unitaire             numeric(38, 2),
+    quantite                  bigint,
+    facture_id                bigint
+        constraint fk3lbv2bl6cfoghw2clt2ghgq8o
+            references entete_vente,
+    produit_id                bigint
+        constraint fk67m3g8tgnsau0mkfcoc7r4ujb
+            references produit
 );
 
+alter table det_facture
+    owner to postgres;
 
-CREATE TABLE det_EnteteAchat
+create table det_achat
 (
-    id              BIGSERIAL PRIMARY KEY,
-    prix_unitaire   DOUBLE PRECISION NOT NULL,
-    quantite_achete INTEGER NOT NULL,
-    EnteteAchat_id        BIGINT REFERENCES EnteteAchat,
-    produit_id      BIGINT REFERENCES produit
+    id                bigserial
+        primary key,
+    prix_unitaire     double precision not null,
+    quantite_achete   integer          not null,
+    entete_achat_id   bigint
+        constraint fkji0fxiui1d5agow1j82hmcra9
+            references entete_achat,
+    produit_id        bigint
+        constraint fkkg8og6ieqrhcki1mt6uq23tyy
+            references produit,
+    total_par_produit numeric(38, 2)
 );
 
-CREATE TABLE entete_fact_det_factures
+alter table det_achat
+    owner to postgres;
+
+create table entete_vente_det_ventes
 (
-    entete_fact_id  BIGINT NOT NULL REFERENCES entete_fact,
-    det_factures_id BIGINT NOT NULL UNIQUE REFERENCES det_facture
+    entete_vente_id bigint not null
+        constraint fkacioqkn6crkgxl5g1momyyjkq
+            references entete_vente,
+    det_ventes_id   bigint not null
+        constraint uk_qewqr3drxlbqoobep7e4q6vmf
+            unique
+        constraint fk6go08tgkhe9hc3np3dioyllq3
+            references det_facture
 );
 
-CREATE TABLE refresh_token
+alter table entete_vente_det_ventes
+    owner to postgres;
+
+create table refresh_token
 (
-    id          BIGINT PRIMARY KEY,
-    expiry_date TIMESTAMP WITH TIME ZONE NOT NULL,
-    revoked     BOOLEAN NOT NULL,
-    token       VARCHAR(255) NOT NULL UNIQUE,
-    user_id     BIGINT REFERENCES _user
+    id          bigint                      not null
+        primary key,
+    expiry_date timestamp(6) with time zone not null,
+    revoked     boolean                     not null,
+    token       varchar(255)                not null
+        constraint uk_r4k4edos30bx9neoq81mdvwph
+            unique,
+    user_id     bigint
+        constraint fkbws85up72jgwebb6ttkjiytg3
+            references users
 );
+
+alter table refresh_token
+    owner to postgres;
 
 create table statistique
 (
@@ -246,6 +388,8 @@ create table statistique
         primary key
 );
 
+alter table statistique
+    owner to postgres;
 
 create table vente
 (
@@ -253,5 +397,6 @@ create table vente
         primary key
 );
 
-
+alter table vente
+    owner to postgres;
 

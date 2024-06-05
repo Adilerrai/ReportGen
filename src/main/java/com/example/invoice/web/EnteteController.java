@@ -65,7 +65,7 @@ public class EnteteController {
     @GetMapping("/reports/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> generateReport(@PathVariable Long id) {
-        return ResponseEntity.ok().body(reportService.generateEntete(id));
+        return ResponseEntity.ok().body(reportService.generateVente(id));
     }
 
 

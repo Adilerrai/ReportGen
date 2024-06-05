@@ -1,6 +1,6 @@
 package com.example.invoice.web;
 
-import com.example.invoice.Security.*;
+import com.example.invoice.security.*;
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;

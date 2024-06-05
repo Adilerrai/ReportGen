@@ -1,4 +1,4 @@
-package com.example.invoice.Security;
+package com.example.invoice.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

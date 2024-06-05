@@ -1,8 +1,7 @@
 package com.example.invoice.model;
 
 import com.example.invoice.enums.StatusEnteteAchat;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+
 
 import java.sql.Date;
 

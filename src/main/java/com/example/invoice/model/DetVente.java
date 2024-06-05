@@ -7,30 +7,55 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "det_facture")
 public class DetVente {
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
     private Long quantite;
+
+
+
+    private int promotion;
+
 
 
     private BigDecimal prixUnitaire;
 
 
+
     @ManyToOne
     private Produit produit;
 
+
+
     private BigDecimal montantTotalParProduit;
+
+
 
     @ManyToOne
     @JoinColumn(name = "facture_id")
     private EnteteVente enteteVente;
 
 
-    public DetVente(Long id, Long quantite, BigDecimal prixUnitaire, Produit produit, BigDecimal montantTotalParProduit, EnteteVente enteteVente) {
+
+
+
+
+
+
+
+
+
+
+    public DetVente(Long id, Long quantite, BigDecimal prixUnitaire,  Produit produit, BigDecimal montantTotalParProduit, EnteteVente enteteVente) {
         this.id = id;
         this.quantite = quantite;
-        this.prixUnitaire = prixUnitaire;
+        this.prixUnitaire= prixUnitaire;
         this.produit = produit;
         this.montantTotalParProduit = montantTotalParProduit;
         this.enteteVente = enteteVente;
@@ -38,6 +63,25 @@ public class DetVente {
 
 
 
+
+
+
+
+    public int getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(int promotion) {
+        this.promotion = promotion;
+    }
+
+    public BigDecimal getPrixUnitaire() {
+        return prixUnitaire;
+    }
+
+    public void setPrixUnitaire(BigDecimal prixUnitaire) {
+        this.prixUnitaire = prixUnitaire;
+    }
 
 
     public DetVente() {
@@ -57,16 +101,10 @@ public class DetVente {
 
     public void setQuantite(Long quantite) {
         this.quantite = quantite;
-        calculateMontantTotalParProduit();
-    }
-    public BigDecimal getPrixUnitaire() {
-        return prixUnitaire;
     }
 
-    public void setPrixUnitaire(BigDecimal prixUnitaire) {
-        this.prixUnitaire = prixUnitaire;
-        calculateMontantTotalParProduit();
-    }
+
+
     public Produit getProduit() {
         return produit;
     }
@@ -92,9 +130,5 @@ public class DetVente {
     }
 
 
-    private void calculateMontantTotalParProduit() {
-        if (this.prixUnitaire != null && this.quantite != null) {
-            this.montantTotalParProduit = this.prixUnitaire.multiply(BigDecimal.valueOf(this.quantite));
-        }
-    }
+
 }

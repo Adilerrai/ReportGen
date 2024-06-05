@@ -9,6 +9,9 @@ import java.math.BigDecimal;
 
 @Entity
 public class Produit {
+
+
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -16,6 +19,8 @@ public class Produit {
     private String designation;
 
     private BigDecimal prixUnitaire;
+
+
     private String Description;
 
 

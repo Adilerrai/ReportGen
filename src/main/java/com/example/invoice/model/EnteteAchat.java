@@ -2,6 +2,8 @@ package com.example.invoice.model;
 
 import com.example.invoice.enums.StatusEnteteAchat;
 import jakarta.persistence.*;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -11,6 +13,9 @@ import java.util.List;
 
 @Entity
 public class EnteteAchat {
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,8 +30,12 @@ public class EnteteAchat {
     private List<DetAchat> DetAchats= new ArrayList<>();
 
 
+
     @ManyToOne(fetch = FetchType.EAGER)
     private    Fournisseur fournisseur;
+
+
+
     @Enumerated(EnumType.STRING)
     private StatusEnteteAchat statusEnteteAchat = StatusEnteteAchat.EN_ATTENTE;
 
@@ -36,17 +45,6 @@ public class EnteteAchat {
     }
 
 
-    @Override
-    public String toString() {
-        return "EnteteAchat{" +
-                "id=" + id +
-                ", totalEnteteAchat=" + totalEnteteAchat +
-                ", DetAchats=" + DetAchats +
-                ", fournisseur=" + fournisseur +
-                ", statusEnteteAchat=" + statusEnteteAchat +
-                ", dateEnteteAchat=" + dateEnteteAchat +
-                '}';
-    }
 
     public EnteteAchat(Long id, BigDecimal totalEnteteAchat, List<DetAchat> DetAchats , Date dateEnteteAchat , StatusEnteteAchat   statusEnteteAchat , Fournisseur fournisseur) {
         this.id = id;
@@ -106,5 +104,35 @@ public class EnteteAchat {
 
     public void setStatusEnteteAchat(StatusEnteteAchat statusEnteteAchat) {
         this.statusEnteteAchat = statusEnteteAchat;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EnteteAchat that = (EnteteAchat) o;
+
+        return new EqualsBuilder().append(id, that.id).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(id).toHashCode();
+    }
+
+
+    @Override
+    public String toString() {
+        return "EnteteAchat{" +
+                "id=" + id +
+                ", totalEnteteAchat=" + totalEnteteAchat +
+                ", DetAchats=" + DetAchats +
+                ", fournisseur=" + fournisseur +
+                ", statusEnteteAchat=" + statusEnteteAchat +
+                ", dateEnteteAchat=" + dateEnteteAchat +
+                '}';
     }
 }

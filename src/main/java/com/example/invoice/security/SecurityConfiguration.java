@@ -1,9 +1,8 @@
-package com.example.invoice.Security;
+package com.example.invoice.security;
 
 import com.example.invoice.Exceptions.SecurityException.CustomAccessDeniedHandler;
 //import com.example.invoice.Exceptions.SecurityException.Http401UnauthorizedEntryPoint;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

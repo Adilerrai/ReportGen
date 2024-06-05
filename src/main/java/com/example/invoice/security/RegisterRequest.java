@@ -1,4 +1,4 @@
-package com.example.invoice.Security;
+package com.example.invoice.security;
 
 import com.example.invoice.annotation.StrongPassword;
 import com.example.invoice.enums.Role;

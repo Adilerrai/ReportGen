@@ -8,33 +8,49 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class EnteteVente {
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
     private Long numeroFacture;
 
-    private Timestamp dateFacture;
-    @Enumerated(EnumType.STRING)
 
+
+    private Timestamp dateFacture;
+
+
+
+    @Enumerated(EnumType.STRING)
     private ModePaiement modePaiement;
+
+
 
     private Timestamp createdDate;
 
-    private BigDecimal totalFacture = BigDecimal.ZERO;
-    @Enumerated(EnumType.STRING)
 
+
+
+    private BigDecimal totalFacture = BigDecimal.ZERO;
+
+
+
+    @Enumerated(EnumType.STRING)
     private Status statut;
+
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Client client;
+
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<DetVente> detVentes ;

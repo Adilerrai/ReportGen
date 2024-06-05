@@ -9,13 +9,20 @@ import java.util.List;
 @Entity
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
     private String nom;
+
     private String prenom;
+
     private String adresse;
+
     @Email(message= "Email should be valid")
     private String email;
+
+
     private String telephone;
 
     @OneToMany
