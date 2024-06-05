@@ -1,8 +1,8 @@
 package com.example.invoice.service;
 
-import com.example.invoice.dto.EnteteFactDTO;
+import com.example.invoice.dto.EnteteVenteDTO;
 import com.example.invoice.dto.EnteteRechercheDTO;
-import com.example.invoice.model.EnteteFact;
+import com.example.invoice.model.EnteteVente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -14,19 +14,19 @@ import java.util.List;
 
 @Service
 public interface EnteteService {
-     List<EnteteFactDTO> getAllEntetes();
-     EnteteFactDTO getEnteteById(Long id);
-     EnteteFactDTO saveEntete(EnteteFactDTO enteteDTO);
+     List<EnteteVenteDTO> getAllEntetes();
+     EnteteVenteDTO getEnteteById(Long id);
+     EnteteVenteDTO saveEntete(EnteteVenteDTO enteteDTO);
      void deleteEntete(Long id);
-     EnteteFactDTO updateEntete(EnteteFactDTO enteteDTO);
+     EnteteVenteDTO updateEntete(EnteteVenteDTO enteteDTO);
 
-    Page<EnteteFact> searchEnteteByCriteria(EnteteRechercheDTO enteteFactDTO  , Pageable pageable);
+    Page<EnteteVente> searchEnteteByCriteria(EnteteRechercheDTO EnteteVenteDTO  , Pageable pageable);
 
-    Page<EnteteFact> searchEnteteByCriteriaHaving(EnteteRechercheDTO enteteFactDTO  , Pageable pageable);
+    Page<EnteteVente> searchEnteteByCriteriaHaving(EnteteRechercheDTO EnteteVenteDTO  , Pageable pageable);
 
 
     @Query(nativeQuery = true,  value = "SELECT * FROM entete_fact WHERE id = ?1")
-    EnteteFact findEnteteById(Long id);
+    EnteteVente findEnteteById(Long id);
 
 
 }

@@ -14,6 +14,6 @@ public interface FournisseurService {
     Fournisseur getFournisseurById(Long id);
 
 
-    Fournisseur getFournisseurByAchatId(Long id);
+    Fournisseur getFournisseurByEnteteAchatId(Long id);
 
 }

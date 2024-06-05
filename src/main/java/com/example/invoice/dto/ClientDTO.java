@@ -1,6 +1,6 @@
 package com.example.invoice.dto;
 
-import com.example.invoice.model.EnteteFact;
+import com.example.invoice.model.EnteteVente;
 
 import java.util.List;
 
@@ -13,19 +13,19 @@ public class ClientDTO {
     private String adresse;
     private String email;
     private String telephone;
-    private List<EnteteFact> enteteFacts;
+    private List<EnteteVente> EnteteVentes;
 
     public ClientDTO() {
     }
 
-    public ClientDTO(Long id, String nom, String prenom, String adresse, String email, String telephone, List<EnteteFact> enteteFacts) {
+    public ClientDTO(Long id, String nom, String prenom, String adresse, String email, String telephone, List<EnteteVente> EnteteVentes) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.email = email;
         this.telephone = telephone;
-        this.enteteFacts = enteteFacts;
+        this.EnteteVentes = EnteteVentes;
     }
 
     public void setId(Long id) {
@@ -36,12 +36,12 @@ public class ClientDTO {
         return id;
     }
 
-    public List<EnteteFact> getEnteteFacts() {
-        return enteteFacts;
+    public List<EnteteVente> getEnteteVentes() {
+        return EnteteVentes;
     }
 
-    public void setEnteteFacts(List<EnteteFact> enteteFacts) {
-        this.enteteFacts = enteteFacts;
+    public void setEnteteVentes(List<EnteteVente> EnteteVentes) {
+        this.EnteteVentes = EnteteVentes;
     }
 
     public String getNom() {

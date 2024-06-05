@@ -12,7 +12,7 @@ public class Caisse {
     private Long id;
 
     private BigDecimal soldeDeCaisse=BigDecimal.ZERO;
-    private BigDecimal totalAchats=BigDecimal.ZERO;
+    private BigDecimal totalEnteteAchats=BigDecimal.ZERO;
     private BigDecimal totalDepenses=BigDecimal.ZERO;
     private BigDecimal difference=BigDecimal.ZERO;
     private BigDecimal totalVentes=BigDecimal.ZERO;
@@ -33,12 +33,12 @@ public class Caisse {
         this.soldeDeCaisse = soldeDeCaisse;
     }
 
-    public BigDecimal getTotalAchats() {
-        return totalAchats;
+    public BigDecimal getTotalEnteteAchats() {
+        return totalEnteteAchats;
     }
 
-    public void setTotalAchats(BigDecimal totalAchats) {
-        this.totalAchats = totalAchats;
+    public void setTotalEnteteAchats(BigDecimal totalEnteteAchats) {
+        this.totalEnteteAchats = totalEnteteAchats;
     }
 
     public BigDecimal getTotalDepenses() {

@@ -16,7 +16,7 @@ id BIGINT  PRIMARY KEY
 ,    Description VARCHAR(255)
 );
 
-CREATE TABLE EnteteFact (
+CREATE TABLE EnteteVente (
      id BIGINT  PRIMARY KEY
 ,    numeroFacture BIGINT
 ,    dateFacture DATE
@@ -26,7 +26,7 @@ CREATE TABLE EnteteFact (
 FOREIGN KEY (client_id) REFERENCES Client(id)
 );
 
-CREATE TABLE DetFacture (
+CREATE TABLE DetVente (
       id BIGINT  PRIMARY KEY
 ,     quantite BIGINT
 ,     prixUnitaire DECIMAL(19, 2)
@@ -34,7 +34,7 @@ CREATE TABLE DetFacture (
 ,     produit_id BIGINT
 ,     facture_id BIGINT,
 FOREIGN KEY (produit_id) REFERENCES Produit(id),
-FOREIGN KEY (facture_id) REFERENCES EnteteFact(id)
+FOREIGN KEY (facture_id) REFERENCES EnteteVente(id)
 );
 
 
@@ -47,10 +47,10 @@ INSERT INTO Produit (id, designation, prixUnitaire, Description) VALUES
                     (1, 'Product 1', 10.00, 'This is product 1'),
                     (2, 'Product 2', 20.00, 'This is product 2');
 
-INSERT INTO EnteteFact (id, numeroFacture, dateFacture, modePaiement, statut, client_id) VALUES
+INSERT INTO EnteteVente (id, numeroFacture, dateFacture, modePaiement, statut, client_id) VALUES
                        (1, 1001, '2022-01-01', 'Cash', 'Paid', 1),
                        (2, 1002, '2022-01-02', 'Credit', 'Unpaid', 2);
 
-INSERT INTO DetFacture (id, quantite, prixUnitaire, montantTotalParProduit, produit_id, facture_id) VALUES
+INSERT INTO DetVente (id, quantite, prixUnitaire, montantTotalParProduit, produit_id, facture_id) VALUES
                         (1, 2, 10.00, 20.00, 1, 1),
                         (2, 3, 20.00, 60.00, 2, 2);

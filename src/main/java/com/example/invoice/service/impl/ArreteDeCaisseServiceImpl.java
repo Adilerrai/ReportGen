@@ -1,12 +1,12 @@
 package com.example.invoice.service.impl;
 
-import com.example.invoice.model.Achat;
+import com.example.invoice.model.EnteteAchat;
 import com.example.invoice.model.ArreteDeCaisse;
-import com.example.invoice.model.EnteteFact;
-import com.example.invoice.repository.achat.AchatRepository;
+import com.example.invoice.model.EnteteVente;
 import com.example.invoice.repository.ArreteDeCaisseRepository;
 import com.example.invoice.repository.CaisseRepository;
 import com.example.invoice.repository.EnteteRepository;
+import com.example.invoice.repository.achat.EnteteAchatRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -19,13 +19,13 @@ import java.util.List;
 public class ArreteDeCaisseServiceImpl {
 
     private final ArreteDeCaisseRepository arreteDeCaisseRepository;
-    private final AchatRepository achatRepository;
+    private final EnteteAchatRepository enteteAchatRepository;
     private final EnteteRepository enteteRepository;
 
 
-    public ArreteDeCaisseServiceImpl(ArreteDeCaisseRepository arreteDeCaisseRepository, CaisseRepository caisseRepository, AchatRepository achatRepository, EnteteRepository enteteRepository) {
+    public ArreteDeCaisseServiceImpl(ArreteDeCaisseRepository arreteDeCaisseRepository, CaisseRepository caisseRepository, EnteteAchatRepository EnteteAchatRepository, EnteteRepository enteteRepository) {
         this.arreteDeCaisseRepository = arreteDeCaisseRepository;
-        this.achatRepository = achatRepository;
+        this.enteteAchatRepository = EnteteAchatRepository;
         this.enteteRepository = enteteRepository;
     }
 
@@ -38,16 +38,16 @@ public class ArreteDeCaisseServiceImpl {
         Timestamp endOfDay = Timestamp.valueOf(LocalDate.now().atTime(23, 59));
 
 
-        List<Achat> achatList = achatRepository.fetchAllAchatsForTheDay(startOfDay, endOfDay);
-        List<EnteteFact> enteteFacts = enteteRepository.fetchAllEnteteForTheDay(startOfDay, endOfDay);
+        List<EnteteAchat> EnteteAchatList = enteteAchatRepository.fetchAllEnteteAchatsForTheDay(startOfDay, endOfDay);
+        List<EnteteVente> EnteteVentes = enteteRepository.fetchAllEnteteForTheDay(startOfDay, endOfDay);
 
 
-        BigDecimal depense = achatList.stream().map(Achat::getTotalAchat).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal depense = EnteteAchatList.stream().map(EnteteAchat::getTotalEnteteAchat).reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        BigDecimal totalVente = enteteFacts.stream()
-                .flatMap(enteteFact -> enteteFact.getDetFactures().stream())
-                .filter(detFacture -> detFacture.getMontantTotalParProduit() != null)
-                .map(detFacture -> detFacture.getMontantTotalParProduit())
+        BigDecimal totalVente = EnteteVentes.stream()
+                .flatMap(EnteteVente -> EnteteVente.getDetVentes().stream())
+                .filter(DetVente -> DetVente.getMontantTotalParProduit() != null)
+                .map(DetVente -> DetVente.getMontantTotalParProduit())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
 

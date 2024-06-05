@@ -21,14 +21,14 @@ public class DetAchat {
 
 
         @ManyToOne(fetch = FetchType.LAZY)
-        private Achat achat;
+        private EnteteAchat EnteteAchat;
 
 
         public DetAchat() {
         }
 
-        public DetAchat(Long id, Produit produit, int quantiteAchete, double prixUnitaire, Achat achat) {
-            this.achat = achat;
+        public DetAchat(Long id, Produit produit, int quantiteAchete, double prixUnitaire, EnteteAchat EnteteAchat) {
+            this.EnteteAchat = EnteteAchat;
             this.id = id;
             this.produit = produit;
             this.quantiteAchete = quantiteAchete;
@@ -37,12 +37,12 @@ public class DetAchat {
         }
 
 
-    public Achat getAchat() {
-        return achat;
+    public EnteteAchat getEnteteAchat() {
+        return EnteteAchat;
     }
 
-    public void setAchat(Achat achat) {
-        this.achat = achat;
+    public void setEnteteAchat(EnteteAchat EnteteAchat) {
+        this.EnteteAchat = EnteteAchat;
     }
 
     public Long getId() {

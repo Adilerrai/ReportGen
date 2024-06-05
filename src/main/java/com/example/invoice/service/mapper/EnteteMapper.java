@@ -1,16 +1,16 @@
 package com.example.invoice.service.mapper;
 
-import com.example.invoice.dto.EnteteFactDTO;
-import com.example.invoice.model.EnteteFact;
+import com.example.invoice.dto.EnteteVenteDTO;
+import com.example.invoice.model.EnteteVente;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring", uses = {  DetFactureMapper.class, ClientMapper.class })
+@Mapper(componentModel = "spring", uses = {  DetVenteMapper.class, ClientMapper.class })
 public interface EnteteMapper {
 
 
-         EnteteFactDTO entityToDto(EnteteFact entete);
+         EnteteVenteDTO entityToDto(EnteteVente entete);
 
          @InheritInverseConfiguration
-         EnteteFact dtoToEntity(EnteteFactDTO enteteDTO);
+         EnteteVente dtoToEntity(EnteteVenteDTO enteteDTO);
 }

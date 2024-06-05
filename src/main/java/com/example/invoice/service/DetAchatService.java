@@ -7,13 +7,13 @@ import java.util.List;
 public interface DetAchatService {
 
 
-    DetAchat updateDetAchat(DetAchat detAchat);
+    DetAchat updateDetAchat(DetAchat DetAchat);
 
     void deleteDetAchat(Long id);
 
     DetAchat getDetAchat(Long id);
 
-    List<DetAchat> getAllDetAchatByIdAchat(Long idAchat);
+    List<DetAchat> getAllDetAchatByIdEnteteAchat(Long idEnteteAchat);
 
 
 }

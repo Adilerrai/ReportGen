@@ -7,7 +7,7 @@ public class CaisseDTO {
     private Long id;
 
     private BigDecimal soldeDeCaisse=BigDecimal.ZERO;
-    private BigDecimal totalAchats=BigDecimal.ZERO;
+    private BigDecimal totalEnteteAchats=BigDecimal.ZERO;
     private BigDecimal totalDepenses=BigDecimal.ZERO;
     private BigDecimal difference=BigDecimal.ZERO;
     private BigDecimal totalVentes= BigDecimal.ZERO;
@@ -16,10 +16,10 @@ public class CaisseDTO {
     public CaisseDTO() {
     }
 
-    public CaisseDTO(Long id, BigDecimal soldeDeCaisse, BigDecimal totalAchats, BigDecimal totalDepenses, BigDecimal difference, BigDecimal totalVentes) {
+    public CaisseDTO(Long id, BigDecimal soldeDeCaisse, BigDecimal totalEnteteAchats, BigDecimal totalDepenses, BigDecimal difference, BigDecimal totalVentes) {
         this.id = id;
         this.soldeDeCaisse = soldeDeCaisse;
-        this.totalAchats = totalAchats;
+        this.totalEnteteAchats = totalEnteteAchats;
         this.totalDepenses = totalDepenses;
         this.difference = difference;
         this.totalVentes = totalVentes;
@@ -41,12 +41,12 @@ public class CaisseDTO {
         this.soldeDeCaisse = soldeDeCaisse;
     }
 
-    public BigDecimal getTotalAchats() {
-        return totalAchats;
+    public BigDecimal getTotalEnteteAchats() {
+        return totalEnteteAchats;
     }
 
-    public void setTotalAchats(BigDecimal totalAchats) {
-        this.totalAchats = totalAchats;
+    public void setTotalEnteteAchats(BigDecimal totalEnteteAchats) {
+        this.totalEnteteAchats = totalEnteteAchats;
     }
 
     public BigDecimal getTotalDepenses() {

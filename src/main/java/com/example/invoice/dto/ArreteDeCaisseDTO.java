@@ -7,7 +7,7 @@ public class ArreteDeCaisseDTO {
     private Long id;
 
 
-    private BigDecimal totalAchat = BigDecimal.ZERO;
+    private BigDecimal totalEnteteAchat = BigDecimal.ZERO;
 
     private BigDecimal totalVente = BigDecimal.ZERO;
 
@@ -18,12 +18,12 @@ public class ArreteDeCaisseDTO {
 
 
 
-    public BigDecimal getTotalAchat() {
-        return totalAchat;
+    public BigDecimal getTotalEnteteAchat() {
+        return totalEnteteAchat;
     }
 
-    public void setTotalAchat(BigDecimal totalAchat) {
-        this.totalAchat = totalAchat;
+    public void setTotalEnteteAchat(BigDecimal totalEnteteAchat) {
+        this.totalEnteteAchat = totalEnteteAchat;
     }
 
     public BigDecimal getTotalVente() {
@@ -63,12 +63,12 @@ public class ArreteDeCaisseDTO {
         this.id = id;
     }
 
-    public ArreteDeCaisseDTO(BigDecimal totalBenefice,  BigDecimal totalDepense, BigDecimal totalVente, BigDecimal totalAchat, Long id) {
+    public ArreteDeCaisseDTO(BigDecimal totalBenefice,  BigDecimal totalDepense, BigDecimal totalVente, BigDecimal totalEnteteAchat, Long id) {
         this.totalBenefice = totalBenefice;
 
         this.totalDepense = totalDepense;
         this.totalVente = totalVente;
-        this.totalAchat = totalAchat;
+        this.totalEnteteAchat = totalEnteteAchat;
         this.id = id;
     }
 }

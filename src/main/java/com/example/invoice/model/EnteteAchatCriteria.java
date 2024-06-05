@@ -1,22 +1,22 @@
 package com.example.invoice.model;
 
-import com.example.invoice.enums.StatusAchat;
+import com.example.invoice.enums.StatusEnteteAchat;
 
 import java.sql.Date;
 
 
-public class AchatCriteria {
+public class EnteteAchatCriteria {
 
 
     private    Long  fournisseurId;
 
-    private StatusAchat statusAchat;
+    private StatusEnteteAchat statusEnteteAchat;
 
     private Date dateRecherheDebut;
 
     private Date dateRechercheFin;
 
-    private Date dateAchat;
+    private Date dateEnteteAchat;
 
 
     public Date getDateRecherheDebut() {
@@ -43,19 +43,19 @@ public class AchatCriteria {
         this.fournisseurId = fournisseurId;
     }
 
-    public Date getDateAchat() {
-        return dateAchat;
+    public Date getDateEnteteAchat() {
+        return dateEnteteAchat;
     }
 
-    public void setDateAchat(Date dateAchat) {
-        this.dateAchat = dateAchat;
+    public void setDateEnteteAchat(Date dateEnteteAchat) {
+        this.dateEnteteAchat = dateEnteteAchat;
     }
 
-    public StatusAchat getStatusAchat() {
-        return statusAchat;
+    public StatusEnteteAchat getStatusEnteteAchat() {
+        return statusEnteteAchat;
     }
 
-    public void setStatusAchat(StatusAchat statusAchat) {
-        this.statusAchat = statusAchat;
+    public void setStatusEnteteAchat(StatusEnteteAchat statusEnteteAchat) {
+        this.statusEnteteAchat = statusEnteteAchat;
     }
 }

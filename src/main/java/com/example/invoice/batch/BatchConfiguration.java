@@ -1,6 +1,6 @@
 package com.example.invoice.batch;
 
-import com.example.invoice.model.EnteteFact;
+import com.example.invoice.model.EnteteVente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
@@ -45,25 +45,25 @@ public class BatchConfiguration {
     }
 
     @Bean
-    public JpaPagingItemReader<EnteteFact> reader() {
-        return new JpaPagingItemReaderBuilder<EnteteFact>()
-                .name("enteteFactReader")
+    public JpaPagingItemReader<EnteteVente> reader() {
+        return new JpaPagingItemReaderBuilder<EnteteVente>()
+                .name("EnteteVenteReader")
                 .entityManagerFactory(entityManagerFactory)
-                .queryString("select e from EnteteFact e where e.statut = 'REGLE'")
+                .queryString("select e from EnteteVente e where e.statut = 'REGLE'")
                 .build();
     }
 
     @Bean
-    public ItemProcessor<EnteteFact, EnteteFact> processor() {
-        return enteteFact -> enteteFact;
+    public ItemProcessor<EnteteVente, EnteteVente> processor() {
+        return EnteteVente -> EnteteVente;
     }
 
 
     @Bean
-    public ItemWriter<EnteteFact> writer() {
+    public ItemWriter<EnteteVente> writer() {
         return items -> {
             ObjectMapper objectMapper = new ObjectMapper();
-            for (EnteteFact item : items) {
+            for (EnteteVente item : items) {
                 String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(item);
                 Files.write(Paths.get("output.json"), json.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
             }
@@ -73,7 +73,7 @@ public class BatchConfiguration {
     @Bean
     public Step myStep() {
         return new StepBuilder("myStep", jobRepository)
-                .<EnteteFact, EnteteFact>chunk(10, transactionManager)
+                .<EnteteVente, EnteteVente>chunk(10, transactionManager)
                 .reader(reader())
                 .processor(processor())
                 .writer(writer())

@@ -44,7 +44,7 @@ public FournisseurServiceImpl(FournisseurRepository fournisseurRepository) {
     }
 
     @Override
-    public Fournisseur getFournisseurByAchatId(Long id) {
-        return fournisseurRepository.getFournisseurByAchatId(id);
+    public Fournisseur getFournisseurByEnteteAchatId(Long id) {
+        return fournisseurRepository.getFournisseurByEnteteAchatId(id);
     }
 }

@@ -9,9 +9,9 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface DetAchatMapper {
 
-    DetAchatDTO toDto(DetAchat detAchat);
+    DetAchatDTO toDto(DetAchat DetAchat);
 
     @InheritInverseConfiguration
-    DetAchat toEntity(DetAchatDTO detAchatDTO);
+    DetAchat toEntity(DetAchatDTO DetAchatDTO);
 
 }

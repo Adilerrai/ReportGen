@@ -2,7 +2,7 @@ package com.example.invoice.dto;
 
 import com.example.invoice.enums.Status;
 import com.example.invoice.model.Client;
-import com.example.invoice.model.DetFacture;
+import com.example.invoice.model.DetVente;
 
 
 import java.util.Date;
@@ -24,7 +24,7 @@ public class EnteteRechercheDTO {
 
     private Client client;
 
-    private List<DetFacture> detFactures;
+    private List<DetVente> DetVentes;
 
 
     public Long getId() {
@@ -75,11 +75,11 @@ public class EnteteRechercheDTO {
         this.client = client;
     }
 
-    public List<DetFacture> getDetFactures() {
-        return detFactures;
+    public List<DetVente> getDetVentes() {
+        return DetVentes;
     }
 
-    public void setDetFactures(List<DetFacture> detFactures) {
-        this.detFactures = detFactures;
+    public void setDetVentes(List<DetVente> DetVentes) {
+        this.DetVentes = DetVentes;
     }
 }

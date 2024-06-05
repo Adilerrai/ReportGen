@@ -24,15 +24,15 @@ public class Fournisseur {
 
 
     @OneToMany(mappedBy = "fournisseur")
-    private List<Achat> achats;
+    private List<EnteteAchat> EnteteAchats;
 
     public Fournisseur() {
     }
 
-    public Fournisseur( List<Achat> achats,  Long id, String nom, String adresse, String telephone, String email, String infoSupplementaire) {
+    public Fournisseur( List<EnteteAchat> EnteteAchats,  Long id, String nom, String adresse, String telephone, String email, String infoSupplementaire) {
         this.id = id;
         this.nom = nom;
-        this.achats = achats;
+        this.EnteteAchats = EnteteAchats;
         this.adresse = adresse;
         this.telephone = telephone;
         this.email = email;
@@ -88,11 +88,11 @@ public class Fournisseur {
         this.infoSupplementaire = infoSupplementaire;
     }
 
-    public List<Achat> getAchats() {
-        return achats;
+    public List<EnteteAchat> getEnteteAchats() {
+        return EnteteAchats;
     }
 
-    public void setAchats(List<Achat> achats) {
-        this.achats = achats;
+    public void setEnteteAchats(List<EnteteAchat> EnteteAchats) {
+        this.EnteteAchats = EnteteAchats;
     }
 }

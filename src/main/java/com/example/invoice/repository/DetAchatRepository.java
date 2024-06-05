@@ -9,6 +9,6 @@ import java.util.List;
 public interface DetAchatRepository extends JpaRepository<DetAchat, Long> {
 
 
-    @Query("select detAchat from DetAchat detAchat join detAchat.achat achat where achat.id = ?1")
-    List<DetAchat> findAllByAchatId(Long idAchat);
+    @Query("select DetAchat from DetAchat DetAchat join DetAchat.EnteteAchat EnteteAchat where EnteteAchat.id = ?1")
+    List<DetAchat> findAllByEnteteAchatId(Long idEnteteAchat);
 }

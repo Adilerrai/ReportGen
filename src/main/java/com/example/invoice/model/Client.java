@@ -19,7 +19,7 @@ public class Client {
     private String telephone;
 
     @OneToMany
-    private List<EnteteFact> enteteFacts;
+    private List<EnteteVente> EnteteVentes;
 
 
     public Client() {

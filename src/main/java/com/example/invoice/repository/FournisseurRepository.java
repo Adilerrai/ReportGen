@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FournisseurRepository extends JpaRepository<Fournisseur, Long> {
 
-    @Query("select fournisseur from Fournisseur fournisseur join fournisseur.achats achat where achat.id = ?1")
-    Fournisseur getFournisseurByAchatId(Long id);
+    @Query("select fournisseur from Fournisseur fournisseur join fournisseur.EnteteAchats EnteteAchat where EnteteAchat.id = ?1")
+    Fournisseur getFournisseurByEnteteAchatId(Long id);
 }

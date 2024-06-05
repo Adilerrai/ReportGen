@@ -1,7 +1,7 @@
 package com.example.invoice.web;
 
 
-import com.example.invoice.dto.DetFactureDTO;
+import com.example.invoice.dto.DetVenteDTO;
 import com.example.invoice.service.DetFactService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,18 +19,18 @@ public class DetailFactController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<DetFactureDTO> addDetailFact(@RequestBody DetFactureDTO detailFactDTO) {
+    public ResponseEntity<DetVenteDTO> addDetailFact(@RequestBody DetVenteDTO detailFactDTO) {
         return ResponseEntity.ok(detailFactService.saveDetFact(detailFactDTO));
     }
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<DetFactureDTO>> getAllDetailFacts() {
+    public ResponseEntity<List<DetVenteDTO>> getAllDetailFacts() {
         return ResponseEntity.ok(detailFactService.getAllDetFacts());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DetFactureDTO> getDetailFactById(@PathVariable Long id) {
+    public ResponseEntity<DetVenteDTO> getDetailFactById(@PathVariable Long id) {
         return ResponseEntity.ok(detailFactService.getDetFactById(id));
     }
 
@@ -42,7 +42,7 @@ public class DetailFactController {
 
 
     @PutMapping("/update")
-    public ResponseEntity<DetFactureDTO> updateDetailFact(@RequestBody DetFactureDTO detailFactDTO) {
+    public ResponseEntity<DetVenteDTO> updateDetailFact(@RequestBody DetVenteDTO detailFactDTO) {
         return ResponseEntity.ok(detailFactService.updateDetFact(detailFactDTO));
     }
 

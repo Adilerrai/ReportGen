@@ -112,7 +112,7 @@ create table arrete_de_caisse
 (
     id             bigserial
         primary key,
-    total_achat    numeric(38, 2),
+    total_EnteteAchat    numeric(38, 2),
     total_benefice numeric(38, 2),
     total_depense  numeric(38, 2),
     total_vente    numeric(38, 2)
@@ -125,7 +125,7 @@ create table caisse
         primary key,
     difference      numeric(38, 2),
     solde_de_caisse numeric(38, 2),
-    total_achats    numeric(38, 2),
+    total_EnteteAchats    numeric(38, 2),
     total_depenses  numeric(38, 2),
     total_ventes    numeric(38, 2)
 );
@@ -183,12 +183,12 @@ create table fournisseur
 
 
 
-CREATE TABLE achat
+CREATE TABLE EnteteAchat
 (
     id             BIGSERIAL PRIMARY KEY,
-    date_achat     DATE,
-    status_achat   SMALLINT CHECK (status_achat >= 0 AND status_achat <= 2),
-    total_achat    NUMERIC(38, 2),
+    date_EnteteAchat     DATE,
+    status_EnteteAchat   SMALLINT CHECK (status_EnteteAchat >= 0 AND status_EnteteAchat <= 2),
+    total_EnteteAchat    NUMERIC(38, 2),
     fournisseur_id BIGINT REFERENCES fournisseur
 );
 
@@ -216,12 +216,12 @@ CREATE TABLE det_facture
 );
 
 
-CREATE TABLE det_achat
+CREATE TABLE det_EnteteAchat
 (
     id              BIGSERIAL PRIMARY KEY,
     prix_unitaire   DOUBLE PRECISION NOT NULL,
     quantite_achete INTEGER NOT NULL,
-    achat_id        BIGINT REFERENCES achat,
+    EnteteAchat_id        BIGINT REFERENCES EnteteAchat,
     produit_id      BIGINT REFERENCES produit
 );
 

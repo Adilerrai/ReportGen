@@ -1,9 +1,9 @@
 package com.example.invoice.web;
 
 
-import com.example.invoice.dto.EnteteFactDTO;
+import com.example.invoice.dto.EnteteVenteDTO;
 import com.example.invoice.dto.EnteteRechercheDTO;
-import com.example.invoice.model.EnteteFact;
+import com.example.invoice.model.EnteteVente;
 import com.example.invoice.service.EnteteService;
 import com.example.invoice.fileGeneration.ReportService;
 import com.example.invoice.service.mapper.EnteteMapper;
@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/entetes")
-
+@RequestMapping("/api/entetes-vente")
 public class EnteteController {
     private EnteteService enteteService;
     private ReportService reportService;
@@ -33,25 +32,25 @@ public class EnteteController {
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<EnteteFactDTO> addEntete(@RequestBody EnteteFactDTO enteteDTO) {
+    public ResponseEntity<EnteteVenteDTO> addEntete(@RequestBody EnteteVenteDTO enteteDTO) {
         return ResponseEntity.ok(enteteService.saveEntete(enteteDTO));
     }
 
     @PutMapping("/update")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<EnteteFactDTO> updateEntete(@RequestBody EnteteFactDTO enteteDTO) {
+    public ResponseEntity<EnteteVenteDTO> updateEntete(@RequestBody EnteteVenteDTO enteteDTO) {
         return ResponseEntity.ok(enteteService.updateEntete(enteteDTO));
     }
 
     @GetMapping("/all")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<List<EnteteFactDTO>> getAllEntetes() {
+    public ResponseEntity<List<EnteteVenteDTO>> getAllEntetes() {
         return ResponseEntity.ok(enteteService.getAllEntetes());
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<EnteteFactDTO> getEnteteById(@PathVariable Long id) {
+    public ResponseEntity<EnteteVenteDTO> getEnteteById(@PathVariable Long id) {
         return ResponseEntity.ok(enteteService.getEnteteById(id));
     }
 
@@ -72,18 +71,18 @@ public class EnteteController {
 
     @PostMapping("/multiple-search")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Page<EnteteFactDTO>> searchMultiple(@RequestBody EnteteRechercheDTO enteteFactDTO, Pageable pageable) {
-        Page<EnteteFact> enteteFacts = enteteService.searchEnteteByCriteria (enteteFactDTO, pageable);
-        Page<EnteteFactDTO> enteteFactDTOS = enteteFacts.map(enteteMapper::entityToDto);
-        return ResponseEntity.ok(enteteFactDTOS);
+    public ResponseEntity<Page<EnteteVenteDTO>> searchMultiple(@RequestBody EnteteRechercheDTO EnteteVenteDTO, Pageable pageable) {
+        Page<EnteteVente> EnteteVentes = enteteService.searchEnteteByCriteria (EnteteVenteDTO, pageable);
+        Page<EnteteVenteDTO> EnteteVenteDTOS = EnteteVentes.map(enteteMapper::entityToDto);
+        return ResponseEntity.ok(EnteteVenteDTOS);
     }
 
     @PostMapping("/multiple-search-having")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Page<EnteteFactDTO>> searchMultipleHaving(@RequestBody EnteteRechercheDTO enteteFactDTO, Pageable pageable) {
-        Page<EnteteFact> enteteFacts = enteteService.searchEnteteByCriteriaHaving (enteteFactDTO, pageable);
-        Page<EnteteFactDTO> enteteFactDTOS = enteteFacts.map(enteteMapper::entityToDto);
-        return ResponseEntity.ok(enteteFactDTOS);
+    public ResponseEntity<Page<EnteteVenteDTO>> searchMultipleHaving(@RequestBody EnteteRechercheDTO EnteteVenteDTO, Pageable pageable) {
+        Page<EnteteVente> EnteteVentes = enteteService.searchEnteteByCriteriaHaving (EnteteVenteDTO, pageable);
+        Page<EnteteVenteDTO> EnteteVenteDTOS = EnteteVentes.map(enteteMapper::entityToDto);
+        return ResponseEntity.ok(EnteteVenteDTOS);
     }
 
 

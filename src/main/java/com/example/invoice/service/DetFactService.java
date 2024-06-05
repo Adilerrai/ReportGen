@@ -1,14 +1,14 @@
 package com.example.invoice.service;
 
-import com.example.invoice.dto.DetFactureDTO;
+import com.example.invoice.dto.DetVenteDTO;
 
 
 
 import java.util.List;
 public interface DetFactService {
-     List<DetFactureDTO> getAllDetFacts();
-     DetFactureDTO getDetFactById(Long id);
-     DetFactureDTO saveDetFact(DetFactureDTO detFactDTO);
+     List<DetVenteDTO> getAllDetFacts();
+     DetVenteDTO getDetFactById(Long id);
+     DetVenteDTO saveDetFact(DetVenteDTO detFactDTO);
      void deleteDetFact(Long id);
-     DetFactureDTO updateDetFact(DetFactureDTO detFactDTO);
+     DetVenteDTO updateDetFact(DetVenteDTO detFactDTO);
 }

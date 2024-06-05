@@ -1,12 +1,12 @@
 package com.example.invoice.service.impl;
 
-import com.example.invoice.dto.EnteteFactDTO;
+import com.example.invoice.dto.EnteteVenteDTO;
 import com.example.invoice.dto.EnteteRechercheDTO;
 import com.example.invoice.model.Caisse;
-import com.example.invoice.model.DetFacture;
-import com.example.invoice.model.EnteteFact;
+import com.example.invoice.model.DetVente;
+import com.example.invoice.model.EnteteVente;
 import com.example.invoice.repository.CaisseRepository;
-import com.example.invoice.repository.DetFactureRepository;
+import com.example.invoice.repository.DetVenteRepository;
 import com.example.invoice.repository.EnteteCriteriaRepo;
 import com.example.invoice.repository.EnteteRepository;
 import com.example.invoice.service.EnteteService;
@@ -35,53 +35,53 @@ public class EnteteServiceImpl implements EnteteService {
 
     private EnteteCriteriaRepo enteteCriteriaRepo;
 
-    private DetFactureRepository detFactureRepository;
+    private DetVenteRepository DetVenteRepository;
 
     private  final CaisseRepository caisseRepository;
 
 
-    public EnteteServiceImpl(EnteteRepository enteteRepository, DetFactureRepository detFactureRepository, EnteteMapper enteteMapper, EnteteCriteriaRepo enteteCriteriaRepo, CaisseRepository caisseRepository) {
+    public EnteteServiceImpl(EnteteRepository enteteRepository, DetVenteRepository DetVenteRepository, EnteteMapper enteteMapper, EnteteCriteriaRepo enteteCriteriaRepo, CaisseRepository caisseRepository) {
         this.enteteRepository = enteteRepository;
         this.enteteMapper = enteteMapper;
         this.enteteCriteriaRepo = enteteCriteriaRepo;
-        this.detFactureRepository = detFactureRepository;
+        this.DetVenteRepository = DetVenteRepository;
         this.caisseRepository = caisseRepository;
     }
 
 
     @Override
-    public List<EnteteFactDTO> getAllEntetes() {
-        List<EnteteFact> EnteteFacts = enteteRepository.findAll();
-        List<EnteteFactDTO> enteteFactDTOS = EnteteFacts.stream().map(enteteFact -> enteteMapper.entityToDto(enteteFact)).toList();
-        return enteteFactDTOS;
+    public List<EnteteVenteDTO> getAllEntetes() {
+        List<EnteteVente> EnteteVentes = enteteRepository.findAll();
+        List<EnteteVenteDTO> EnteteVenteDTOS = EnteteVentes.stream().map(EnteteVente -> enteteMapper.entityToDto(EnteteVente)).toList();
+        return EnteteVenteDTOS;
     }
 
 
 
 
     @Override
-    public EnteteFactDTO getEnteteById(Long id) {
-        EnteteFact enteteFact = enteteRepository.findById(id).get();
-        return enteteMapper.entityToDto(enteteFact);
+    public EnteteVenteDTO getEnteteById(Long id) {
+        EnteteVente EnteteVente = enteteRepository.findById(id).get();
+        return enteteMapper.entityToDto(EnteteVente);
     }
 
 
 
     @Override
-    public EnteteFactDTO saveEntete(EnteteFactDTO enteteDTO) {
+    public EnteteVenteDTO saveEntete(EnteteVenteDTO enteteDTO) {
 
 
-        EnteteFact enteteFact = enteteMapper.dtoToEntity (enteteDTO);
-        enteteFact.setDateFacture(Timestamp.valueOf(now().atStartOfDay()));
+        EnteteVente EnteteVente = enteteMapper.dtoToEntity (enteteDTO);
+        EnteteVente.setDateFacture(Timestamp.valueOf(now().atStartOfDay()));
 
-        for (DetFacture detFacture : enteteFact.getDetFactures()) {
-            detFactureRepository.save(detFacture);
+        for (DetVente DetVente : EnteteVente.getDetVentes()) {
+            DetVenteRepository.save(DetVente);
         }
 
 
-        BigDecimal totalAmount = enteteDTO.getDetFactures().stream()
-                .filter(detFacture -> detFacture.getMontantTotalParProduit() != null)
-                .map(detFacture -> detFacture.getMontantTotalParProduit())
+        BigDecimal totalAmount = enteteDTO.getDetVentes().stream()
+                .filter(DetVente -> DetVente.getMontantTotalParProduit() != null)
+                .map(DetVente -> DetVente.getMontantTotalParProduit())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
 
@@ -90,12 +90,12 @@ public class EnteteServiceImpl implements EnteteService {
 
         System.out.println("caisse.getTotalVentes() " + caisse.getTotalVentes()) ;
 
-        caisse.setDifference(caisse.getTotalVentes().subtract(caisse.getTotalAchats()));
+        caisse.setDifference(caisse.getTotalVentes().subtract(caisse.getTotalEnteteAchats()));
 
-        enteteFact.setTotalFacture(totalAmount);
-        enteteFact = enteteRepository.save(enteteFact);
+        EnteteVente.setTotalFacture(totalAmount);
+        EnteteVente = enteteRepository.save(EnteteVente);
 
-        return   enteteMapper.entityToDto(enteteFact);
+        return   enteteMapper.entityToDto(EnteteVente);
     }
 
 
@@ -111,33 +111,33 @@ public class EnteteServiceImpl implements EnteteService {
 
 
     @Override
-    public EnteteFactDTO updateEntete(EnteteFactDTO enteteDTO) {
-        EnteteFact enteteFact = enteteRepository.findById(enteteDTO.getId()).get();
-        if(enteteFact == null) {
-                throw new RuntimeException("EnteteFact not found");
+    public EnteteVenteDTO updateEntete(EnteteVenteDTO enteteDTO) {
+        EnteteVente EnteteVente = enteteRepository.findById(enteteDTO.getId()).get();
+        if(EnteteVente == null) {
+                throw new RuntimeException("EnteteVente not found");
         }
-        enteteFact.setClient(enteteDTO.getClient());
-        enteteFact.setNumeroFacture(enteteDTO.getNumeroFacture());
-        enteteFact.setDateFacture(enteteDTO.getDateFacture());
-        enteteFact.setModePaiement(enteteDTO.getModePaiement());
-        enteteFact.setStatut(enteteDTO.getStatut());
-        enteteFact.setDetFactures(enteteDTO.getDetFactures());
-        enteteRepository.save(enteteFact);
-        return enteteMapper.entityToDto(enteteFact);
+        EnteteVente.setClient(enteteDTO.getClient());
+        EnteteVente.setNumeroFacture(enteteDTO.getNumeroFacture());
+        EnteteVente.setDateFacture(enteteDTO.getDateFacture());
+        EnteteVente.setModePaiement(enteteDTO.getModePaiement());
+        EnteteVente.setStatut(enteteDTO.getStatut());
+        EnteteVente.setDetVentes(enteteDTO.getDetVentes());
+        enteteRepository.save(EnteteVente);
+        return enteteMapper.entityToDto(EnteteVente);
     }
 
     @Override
-    public Page<EnteteFact> searchEnteteByCriteria(EnteteRechercheDTO enteteFactDTO , Pageable pageable ) {
-        return  enteteCriteriaRepo.findByCriteria(enteteFactDTO , pageable);
+    public Page<EnteteVente> searchEnteteByCriteria(EnteteRechercheDTO EnteteVenteDTO , Pageable pageable ) {
+        return  enteteCriteriaRepo.findByCriteria(EnteteVenteDTO , pageable);
     }
 
     @Override
-    public Page<EnteteFact> searchEnteteByCriteriaHaving(EnteteRechercheDTO enteteFactDTO, Pageable pageable) {
-        return enteteCriteriaRepo.findByCriteriaHaving(enteteFactDTO, pageable);
+    public Page<EnteteVente> searchEnteteByCriteriaHaving(EnteteRechercheDTO EnteteVenteDTO, Pageable pageable) {
+        return enteteCriteriaRepo.findByCriteriaHaving(EnteteVenteDTO, pageable);
     }
 
     @Override
-    public EnteteFact findEnteteById(Long id) {
+    public EnteteVente findEnteteById(Long id) {
         return null;
     }
 }

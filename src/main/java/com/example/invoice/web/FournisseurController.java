@@ -44,9 +44,9 @@ public class FournisseurController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/get-fournisseur-by-achat-id/{id}")
+    @GetMapping("/get-fournisseur-by-EnteteAchat-id/{id}")
     public ResponseEntity<FournisseurDTO> getFournisseur(@PathVariable Long id) {
-        Fournisseur fournisseur = fournisseurService.getFournisseurByAchatId(id);
+        Fournisseur fournisseur = fournisseurService.getFournisseurByEnteteAchatId(id);
         return ResponseEntity.ok(fournisseurMapper.entityToDto(fournisseur));
     }
 

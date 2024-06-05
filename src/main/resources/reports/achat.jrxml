@@ -30,7 +30,7 @@
                 <textElement textAlignment="Center">
                     <font size="18" isBold="true"/>
                 </textElement>
-                <text><![CDATA[Achat Recap]]></text>
+                <text><![CDATA[EnteteAchat Recap]]></text>
             </staticText>
         </band>
     </title>
@@ -56,7 +56,7 @@
             </staticText>
             <textField>
                 <reportElement x="150" y="20" width="100" height="20" uuid="d287a29a-4735-48e7-95fc-8c01b0c2262b"/>
-                <textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dateAchat})]]></textFieldExpression>
+                <textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dateEnteteAchat})]]></textFieldExpression>
             </textField>
         </band>
     </pageHeader>
@@ -93,7 +93,7 @@
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                     <datasetRun subDataset="Dataset1" uuid="eea62785-be0a-4861-9a27-91d9efacb061">
-                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detAchats})]]></dataSourceExpression>
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detEnteteAchats})]]></dataSourceExpression>
                     </datasetRun>
                     <jr:column width="40" uuid="2e38b388-4433-4410-a585-d81d92ae7609">
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
@@ -184,7 +184,7 @@
             </textField>
             <textField>
                 <reportElement x="380" y="170" width="200" height="20" uuid="af4f1148-c768-43d2-a654-bf7e0ea627eb"/>
-                <textFieldExpression><![CDATA[$F{statusAchat}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{statusEnteteAchat}]]></textFieldExpression>
             </textField>
         </band>
     </detail>

@@ -38,7 +38,7 @@ public class CaisseServiceImpl implements CaisseService {
         if (caisse == null) {
             throw new RuntimeException("Caisse non trouvé");
         }
-        caisse.setDifference(caisse.getTotalVentes().subtract(caisse.getTotalAchats()));
+        caisse.setDifference(caisse.getTotalVentes().subtract(caisse.getTotalEnteteAchats()));
 
         return caisseRepository.findById(id).get();
 
