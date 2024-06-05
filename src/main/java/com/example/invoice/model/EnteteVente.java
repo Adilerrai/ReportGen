@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,7 +35,7 @@ public class EnteteVente {
     private Client client;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private List<DetVente> DetVentes;
+    private List<DetVente> detVentes ;
 
 
 
@@ -43,7 +44,7 @@ public class EnteteVente {
     public EnteteVente() {
     }
 
-    public EnteteVente (Long id, Client client, Status statut, BigDecimal totalFacture, Timestamp createdDate, Timestamp dateFacture, Long numeroFacture, ModePaiement modePaiement, List<DetVente> DetVentes) {
+    public EnteteVente (Long id, Client client, Status statut, BigDecimal totalFacture, Timestamp createdDate, Timestamp dateFacture, Long numeroFacture, ModePaiement modePaiement, List<DetVente> detVentes) {
         this.id = id;
         this.client = client;
         this.statut = statut;
@@ -52,7 +53,7 @@ public class EnteteVente {
         this.dateFacture = dateFacture;
         this.numeroFacture = numeroFacture;
         this.modePaiement = modePaiement;
-        this.DetVentes = DetVentes;
+        this.detVentes = detVentes;
     }
 
     public BigDecimal getTotalFacture() {
@@ -112,11 +113,11 @@ public class EnteteVente {
     }
 
     public List<DetVente> getDetVentes() {
-        return DetVentes;
+        return detVentes;
     }
 
     public void setDetVentes(List<DetVente> DetVentes) {
-        this.DetVentes = DetVentes;
+        this.detVentes = DetVentes;
     }
 
     public void setId(Long id) {
@@ -138,7 +139,7 @@ public class EnteteVente {
                 ", createdDate=" + createdDate +
                 ", statut=" + statut +
                 ", client=" + client +
-                ", DetVentes=" + DetVentes +
+                ", DetVentes=" + detVentes +
                 '}';
     }
 }

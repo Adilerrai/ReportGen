@@ -18,7 +18,7 @@ public class EnteteAchatDTO {
 
 
 
-    private List<DetAchatDTO> DetAchats= new ArrayList<>();
+    private List<DetAchatDTO> detAchats= new ArrayList<>();
 
 
     private    FournisseurDTO fournisseur;
@@ -33,7 +33,7 @@ public class EnteteAchatDTO {
     public EnteteAchatDTO(Long id, BigDecimal totalEnteteAchat, List<DetAchatDTO> DetAchats, StatusEnteteAchat statusEnteteAchat, FournisseurDTO fournisseur, Date dateEnteteAchat) {
         this.id = id;
         this.totalEnteteAchat = totalEnteteAchat;
-        this.DetAchats = DetAchats;
+        this.detAchats = DetAchats;
         this.statusEnteteAchat = statusEnteteAchat;
         this.fournisseur = fournisseur;
         this.dateEnteteAchat = dateEnteteAchat;
@@ -72,11 +72,11 @@ public class EnteteAchatDTO {
     }
 
     public List<DetAchatDTO> getDetAchats() {
-        return DetAchats;
+        return detAchats;
     }
 
     public void setDetAchats(List<DetAchatDTO> DetAchats) {
-        this.DetAchats = DetAchats;
+        this.detAchats = DetAchats;
     }
 
     public BigDecimal getTotalEnteteAchat() {

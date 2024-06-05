@@ -2,12 +2,16 @@ package com.example.invoice.dto;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 public class DetAchatDTO {
 
 
     private Long id;
 
     private ProduitDTO produit;
+
+    private BigDecimal totalParProduit;
 
 
     private int quantiteAchete;
@@ -17,12 +21,22 @@ public class DetAchatDTO {
     public DetAchatDTO() {
     }
 
-    public DetAchatDTO(Long id, ProduitDTO produit, int quantiteAchete, double prixUnitaire) {
+    public DetAchatDTO(Long id, ProduitDTO produit, BigDecimal totalParProduit,int quantiteAchete, double prixUnitaire) {
         this.id = id;
         this.produit = produit;
+        this.totalParProduit= totalParProduit;
         this.quantiteAchete = quantiteAchete;
         this.prixUnitaire = prixUnitaire;
 
+    }
+
+
+    public BigDecimal getTotalParProduit() {
+        return totalParProduit;
+    }
+
+    public void setTotalParProduit(BigDecimal totalParProduit) {
+        this.totalParProduit = totalParProduit;
     }
 
     public Long getId() {

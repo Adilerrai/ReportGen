@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.ZoneId;
 import java.util.List;
 
 
@@ -71,8 +72,17 @@ public class EnteteServiceImpl implements EnteteService {
     public EnteteVenteDTO saveEntete(EnteteVenteDTO enteteDTO) {
 
 
+        System.out.println(enteteDTO.toString());
+
         EnteteVente EnteteVente = enteteMapper.dtoToEntity (enteteDTO);
-        EnteteVente.setDateFacture(Timestamp.valueOf(now().atStartOfDay()));
+
+        System.out.println(EnteteVente.toString());
+
+        System.out.println(EnteteVente.getDetVentes());
+
+
+        java.util.Date date = java.util.Date.from(now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        EnteteVente.setDateFacture(new java.sql.Timestamp(date.getTime()));
 
         for (DetVente DetVente : EnteteVente.getDetVentes()) {
             DetVenteRepository.save(DetVente);

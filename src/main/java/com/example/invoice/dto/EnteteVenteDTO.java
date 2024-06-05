@@ -30,12 +30,12 @@ public class EnteteVenteDTO {
 
     private Client client;
 
-    private List<DetVente> DetVentes;
+    private List<DetVente> detVentes;
 
     public EnteteVenteDTO() {
     }
 
-    public EnteteVenteDTO(BigDecimal totalFacture ,Long id, Long numeroFacture, Date dateFacture, ModePaiement modePaiement, Status statut, Client client, List<DetVente> DetVentes) {
+    public EnteteVenteDTO(BigDecimal totalFacture ,Long id, Long numeroFacture, Date dateFacture, ModePaiement modePaiement, Status statut, Client client, List<DetVente> detVentes) {
         this.id = id;
         this.numeroFacture = numeroFacture;
         this.dateFacture = dateFacture;
@@ -43,7 +43,7 @@ public class EnteteVenteDTO {
         this.statut = statut;
         this.client = client;
         this.totalFacture = totalFacture;
-        this.DetVentes = DetVentes;
+        this.detVentes = detVentes;
     }
 
 
@@ -96,11 +96,11 @@ public class EnteteVenteDTO {
     }
 
     public List<DetVente> getDetVentes() {
-        return DetVentes;
+        return detVentes;
     }
 
     public void setDetVentes(List<DetVente> DetVentes) {
-        this.DetVentes = DetVentes;
+        this.detVentes = DetVentes;
     }
 
     public void setId(Long id) {
@@ -117,5 +117,20 @@ public class EnteteVenteDTO {
 
     public void setTotalFacture(BigDecimal totalFacture) {
         this.totalFacture = totalFacture;
+    }
+
+    @Override
+    public String toString() {
+        return "EnteteVenteDTO{" +
+                "id=" + id +
+                ", numeroFacture=" + numeroFacture +
+                ", dateFacture=" + dateFacture +
+                ", modePaiement=" + modePaiement +
+                ", createdDate=" + createdDate +
+                ", statut=" + statut +
+                ", totalFacture=" + totalFacture +
+                ", client=" + client +
+                ", detVentes=" + detVentes +
+                '}';
     }
 }

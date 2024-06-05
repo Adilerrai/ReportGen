@@ -3,6 +3,8 @@ package com.example.invoice.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 
 @Entity
 public class DetAchat {
@@ -18,7 +20,7 @@ public class DetAchat {
         private int quantiteAchete;
 
         private double prixUnitaire;
-
+            private BigDecimal totalParProduit;
 
         @ManyToOne(fetch = FetchType.LAZY)
         private EnteteAchat EnteteAchat;
@@ -27,9 +29,10 @@ public class DetAchat {
         public DetAchat() {
         }
 
-        public DetAchat(Long id, Produit produit, int quantiteAchete, double prixUnitaire, EnteteAchat EnteteAchat) {
+        public DetAchat(Long id, Produit produit, BigDecimal totalParProduit  , int quantiteAchete, double prixUnitaire, EnteteAchat EnteteAchat) {
             this.EnteteAchat = EnteteAchat;
             this.id = id;
+            this.totalParProduit= totalParProduit;
             this.produit = produit;
             this.quantiteAchete = quantiteAchete;
             this.prixUnitaire = prixUnitaire;
@@ -69,7 +72,13 @@ public class DetAchat {
         this.produit = produit;
     }
 
+    public BigDecimal getTotalParProduit() {
+        return totalParProduit;
+    }
 
+    public void setTotalParProduit(BigDecimal totalParProduit) {
+        this.totalParProduit = totalParProduit;
+    }
 
     public double getPrixUnitaire() {
         return prixUnitaire;

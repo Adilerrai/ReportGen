@@ -37,7 +37,7 @@
     <field name="statut" class="java.lang.String"/>
     <field name="client.email" class="java.lang.String"/>
     <field name="client.telephone" class="java.lang.String"/>
-    <field name="DetVentes" class="java.util.List"/>
+    <field name="detVentes" class="java.util.List"/>
     <title>
         <band height="30">
             <staticText>
@@ -108,7 +108,7 @@
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                     <datasetRun subDataset="Dataset1" uuid="eea62785-be0a-4861-9a27-91d9efacb061">
-                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{DetVentes})]]></dataSourceExpression>
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detVentes})]]></dataSourceExpression>
                     </datasetRun>
                     <jr:column width="40" uuid="2e38b388-4433-4410-a585-d81d92ae7609">
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>

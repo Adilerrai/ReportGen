@@ -108,6 +108,8 @@ public class ReportService {
             addFieldToDataset(subDataset, "produit.designation", String.class);
             addFieldToDataset(subDataset, "quantiteAchete", Integer.class);
             addFieldToDataset(subDataset, "prixUnitaire", Double.class);
+            addFieldToDataset(subDataset, "totalParProduit", BigDecimal.class);
+
 
             jasperDesign.addDataset(subDataset);
 
@@ -117,9 +119,8 @@ public class ReportService {
             addFieldToDataset(jasperDesign.getMainDesignDataset(), "fournisseur.telephone", String.class);
             addFieldToDataset(jasperDesign.getMainDesignDataset(), "id", Long.class);
             addFieldToDataset(jasperDesign.getMainDesignDataset(), "dateEnteteAchat", java.sql.Date.class);
-            addFieldToDataset(jasperDesign.getMainDesignDataset(), "DetAchats", List.class);
+            addFieldToDataset(jasperDesign.getMainDesignDataset(), "detAchats", List.class);
             addFieldToDataset(jasperDesign.getMainDesignDataset(), "statusEnteteAchat", StatusEnteteAchat.class);
-
 
 
 

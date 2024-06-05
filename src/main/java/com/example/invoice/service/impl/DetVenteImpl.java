@@ -90,7 +90,7 @@ public class DetVenteImpl implements DetFactService {
             DetVente.setQuantite(detFactDTO.getQuantite());
             DetVente.setPrixUnitaire(detFactDTO.getPrixUnitaire());
             DetVente.setMontantTotalParProduit(detFactDTO.getMontantTotalParProduit());
-            DetVente.setFacture(detFactDTO.getEnteteVenteDTO());
+            DetVente.setEnteteVente(detFactDTO.getEnteteVenteDTO());
             DetVenteRepository.save(DetVente);
             return DetVenteMapper.entityToDto(DetVente);
     }

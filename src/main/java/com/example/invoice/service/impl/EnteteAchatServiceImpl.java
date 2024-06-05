@@ -73,6 +73,7 @@ public class EnteteAchatServiceImpl implements EnteteAchatService {
                             .multiply(BigDecimal.valueOf(DetAchat.getPrixUnitaire()))));
 
             BigDecimal totalDetAchat = BigDecimal.valueOf(DetAchat.getQuantiteAchete()).multiply(BigDecimal.valueOf(DetAchat.getPrixUnitaire()));
+            DetAchat.setTotalParProduit(totalDetAchat); // set the total for this DetAchat
             totalEnteteAchat = totalEnteteAchat.add(totalDetAchat);
 
             DetAchat newDetAchat = new DetAchat();
@@ -80,6 +81,9 @@ public class EnteteAchatServiceImpl implements EnteteAchatService {
             newDetAchat.setEnteteAchat(EnteteAchat);
             newDetAchat.setQuantiteAchete(DetAchat.getQuantiteAchete());
             newDetAchat.setPrixUnitaire(DetAchat.getPrixUnitaire());
+            newDetAchat.setTotalParProduit(totalDetAchat); // set the total for the new DetAchat
+
+            System.out.println(newDetAchat.getTotalParProduit());
             DetAchatRepository.save(newDetAchat);
         }
 
@@ -94,7 +98,6 @@ public class EnteteAchatServiceImpl implements EnteteAchatService {
 
         return EnteteAchat;
     }
-
 
 
     @Override

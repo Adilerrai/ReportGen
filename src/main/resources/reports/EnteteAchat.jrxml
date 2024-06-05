@@ -93,7 +93,7 @@
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                     <datasetRun subDataset="Dataset1" uuid="eea62785-be0a-4861-9a27-91d9efacb061">
-                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detEnteteAchats})]]></dataSourceExpression>
+                        <dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{detAchats})]]></dataSourceExpression>
                     </datasetRun>
                     <jr:column width="40" uuid="2e38b388-4433-4410-a585-d81d92ae7609">
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
@@ -168,7 +168,7 @@
                         <jr:detailCell style="Table_2_TD" height="30">
                             <textField>
                                 <reportElement x="0" y="0" width="125" height="30" uuid="6edd1452-e6ec-4721-bcd0-26c39363f288"/>
-                                <textFieldExpression><![CDATA[new java.math.BigDecimal($F{quantiteAchete}).multiply(new java.math.BigDecimal($F{prixUnitaire}))]]></textFieldExpression>
+                                <textFieldExpression><![CDATA[$F{totalParProduit}]]></textFieldExpression>
                             </textField>
                         </jr:detailCell>
                     </jr:column>

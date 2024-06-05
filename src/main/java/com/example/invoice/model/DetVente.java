@@ -24,16 +24,16 @@ public class DetVente {
 
     @ManyToOne
     @JoinColumn(name = "facture_id")
-    private EnteteVente facture;
+    private EnteteVente enteteVente;
 
 
-    public DetVente(Long id, Long quantite, BigDecimal prixUnitaire, Produit produit, BigDecimal montantTotalParProduit, EnteteVente facture) {
+    public DetVente(Long id, Long quantite, BigDecimal prixUnitaire, Produit produit, BigDecimal montantTotalParProduit, EnteteVente enteteVente) {
         this.id = id;
         this.quantite = quantite;
         this.prixUnitaire = prixUnitaire;
         this.produit = produit;
         this.montantTotalParProduit = montantTotalParProduit;
-        this.facture = facture;
+        this.enteteVente = enteteVente;
     }
 
 
@@ -83,12 +83,12 @@ public class DetVente {
         this.montantTotalParProduit = montantTotalParProduit;
     }
 
-    public EnteteVente getFacture() {
-        return facture;
+    public EnteteVente getEnteteVente() {
+        return enteteVente;
     }
 
-    public void setFacture(EnteteVente facture) {
-        this.facture = facture;
+    public void setEnteteVente(EnteteVente facture) {
+        this.enteteVente = facture;
     }
 
 
