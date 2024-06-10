@@ -9,12 +9,12 @@ import java.util.List;
 
 @Service
 public interface ProduitService {
-     List<ProduitDTO> getAllProduits();
-     ProduitDTO getProduitById(Long id);
-     ProduitDTO saveProduit(ProduitDTO produitDTO);
- void deleteProduit(Long id);
-     ProduitDTO updateProduit(ProduitDTO produitDTO);
-
+//     List<ProduitDTO> getAllProduits();
+//     ProduitDTO getProduitById(Long id);
+//     ProduitDTO saveProduit(ProduitDTO produitDTO);
+// void deleteProduit(Long id);
+//     ProduitDTO updateProduit(ProduitDTO produitDTO);
+//
 
 
 }

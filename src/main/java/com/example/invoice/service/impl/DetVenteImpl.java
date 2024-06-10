@@ -3,10 +3,12 @@ package com.example.invoice.service.impl;
 import com.example.invoice.dto.DetVenteDTO;
 import com.example.invoice.dto.ProduitDTO;
 import com.example.invoice.model.DetVente;
+import com.example.invoice.model.Produit;
 import com.example.invoice.repository.DetVenteRepository;
 import com.example.invoice.service.DetFactService;
 import com.example.invoice.service.ProduitService;
 import com.example.invoice.service.mapper.DetVenteMapper;
+import com.example.invoice.service.mapper.ProduitMapperImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,13 +23,15 @@ public class DetVenteImpl implements DetFactService {
     private final DetVenteMapper DetVenteMapper;
 
 
-    private final ProduitService produitService;
+    private final ProduitServiceImpl produitService;
+    private final ProduitMapperImpl produitMapperImpl;
 
 
-    public DetVenteImpl(DetVenteRepository DetVenteRepository, DetVenteMapper   DetVenteMapper, ProduitService produitService)   {
+    public DetVenteImpl(DetVenteRepository DetVenteRepository, DetVenteMapper   DetVenteMapper, ProduitServiceImpl produitService, ProduitMapperImpl produitMapperImpl)   {
         this.DetVenteRepository = DetVenteRepository;
         this.DetVenteMapper = DetVenteMapper;
         this.produitService = produitService;
+        this.produitMapperImpl = produitMapperImpl;
     }
 
 
@@ -66,9 +70,10 @@ public class DetVenteImpl implements DetFactService {
             throw new RuntimeException("Quantité insuffisante");
         }
 
-        ProduitDTO produitFromDb = produitService.getProduitById(detFactDTO.getProduit().getId());
+        Produit produitFromDb = produitService.getProduitById(detFactDTO.getProduit().getId());
+        ProduitDTO produitDTO = produitMapperImpl.entityToDto(produitFromDb);
         produitFromDb.setQuantite((int) (produitFromDb.getQuantite()- detFactDTO.getQuantite()));
-        produitService.updateProduit(produitFromDb);
+        produitService.updateProduit(produitDTO);
         DetVente DetVente = DetVenteMapper.dtoToEntity(detFactDTO);
         DetVenteRepository.save(DetVente);
         return DetVenteMapper.entityToDto(DetVente);

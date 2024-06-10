@@ -90,6 +90,8 @@ public class ReportService {
             EnteteAchatList.add(enteteAchat);
 
 
+            System.out.println("enteteAchat: " + enteteAchat);
+
             String outputDirectory = "src/main/resources/reports/";
             String outputFileName = "Achat_" + enteteAchat.getId().hashCode() + ".pdf";
             String reportPath = "src/main/resources/reports/Achat.jrxml";

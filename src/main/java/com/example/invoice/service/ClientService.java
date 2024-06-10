@@ -9,19 +9,19 @@ import java.util.List;
 
 
 public interface ClientService {
-     List<ClientDTO> getAllClients();
-
-     ClientDTO getClientById(Long id);
-
-     ClientDTO saveClient(ClientDTO clientDTO);
-
-
-     void deleteClient(Long id);
-
-     ClientDTO updateClient(ClientDTO clientDTO);
-
-    Client newSaveClient(Client client);
-
+//     List<ClientDTO> getAllClients();
+//
+//     ClientDTO getClientById(Long id);
+//
+//     ClientDTO saveClient(ClientDTO clientDTO);
+//
+//
+//     void deleteClient(Long id);
+//
+//     ClientDTO updateClient(ClientDTO clientDTO);
+//
+//    Client newSaveClient(Client client);
+//
 
 
 }

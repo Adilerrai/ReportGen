@@ -14,11 +14,11 @@ import java.util.List;
 
 @Service
 public interface EnteteService {
-     List<EnteteVenteDTO> getAllEntetes();
-     EnteteVenteDTO getEnteteById(Long id);
-     EnteteVenteDTO saveEntete(EnteteVenteDTO enteteDTO);
-     void deleteEntete(Long id);
-     EnteteVenteDTO updateEntete(EnteteVenteDTO enteteDTO);
+//     List<EnteteVenteDTO> getAllEntetes();
+//     EnteteVenteDTO getEnteteById(Long id);
+//     EnteteVenteDTO saveEntete(EnteteVenteDTO enteteDTO);
+//     void deleteEntete(Long id);
+//     EnteteVenteDTO updateEntete(EnteteVenteDTO enteteDTO);
 
     Page<EnteteVente> searchEnteteByCriteria(EnteteRechercheDTO EnteteVenteDTO  , Pageable pageable);
 

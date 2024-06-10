@@ -2,10 +2,10 @@ package com.example.invoice.web;
 
 
 import com.example.invoice.dto.ClientDTO;
-import com.example.invoice.service.ClientService;
+import com.example.invoice.model.Client;
+import com.example.invoice.service.ClientServiceImpl;
 import com.example.invoice.service.mapper.ClientMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,12 +14,13 @@ import java.util.List;
 @RequestMapping("/api/clients")
 public class ClientController {
 
-    private ClientService clientService;
+    private ClientServiceImpl clientService;
 
     private ClientMapper clientMapper;
 
-    public ClientController(ClientService clientService, ClientMapper clientMapper) {
+    public ClientController(ClientServiceImpl clientService, ClientMapper clientMapper) {
         this.clientService = clientService;
+        this.clientMapper=clientMapper;
     }
 
     @PostMapping("/add")
@@ -45,12 +46,16 @@ public class ClientController {
 
     @GetMapping("/all")
     public ResponseEntity<List<ClientDTO>> getAllClients() {
-        return ResponseEntity.ok(clientService.getAllClients());
+        List<Client> clientList = clientService.getAllClients();
+        List<ClientDTO> clientDTOS = clientList.stream().map(client -> clientMapper.entityToDto(client)).toList();
+        return ResponseEntity.ok(clientDTOS);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ClientDTO> getClientById(@PathVariable Long id) {
-        return ResponseEntity.ok(clientService.getClientById(id));
+        Client client= clientService.getClientById(id);
+        ClientDTO clientDto = clientMapper.entityToDto(client);
+        return ResponseEntity.ok(clientDto);
     }
 
     @DeleteMapping("/delete/{id}")

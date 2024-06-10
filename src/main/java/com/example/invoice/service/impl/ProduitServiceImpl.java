@@ -21,34 +21,26 @@ public class ProduitServiceImpl  implements ProduitService {
         this.produitRepository = produitRepository;
     }
 
-    @Override
-    public List<ProduitDTO> getAllProduits() {
+    public List<Produit> getAllProduits() {
         List<Produit> produits = produitRepository.findAll();
-        List<ProduitDTO> produitDTOS = produits.stream().map(produit -> produitMapper.entityToDto(produit)).toList();
-        return produitDTOS;
+        return produits;
     }
 
-    @Override
-    public ProduitDTO getProduitById(Long id) {
+    public Produit getProduitById(Long id) {
         Produit produit = produitRepository.findById(id).get();
-        return produitMapper.entityToDto(produit);
+        return produit;
 
     }
 
-    @Override
-    public ProduitDTO saveProduit(ProduitDTO produitDTO) {
-        Produit produit = produitMapper.dtoToEntity(produitDTO);
-        produitRepository.save(produit);
-        return produitMapper.entityToDto(produit);
+    public Produit saveProduit(Produit produit) {
+        return produitRepository.save(produit);
     }
 
-    @Override
     public void deleteProduit(Long id) {
         produitRepository.deleteById(id);
 
     }
 
-    @Override
     public ProduitDTO updateProduit(ProduitDTO produitDTO) {
         Produit produit = produitRepository.findById(produitDTO.getId()).get();
         if(produit != null) {

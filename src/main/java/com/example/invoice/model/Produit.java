@@ -10,8 +10,6 @@ import java.math.BigDecimal;
 @Entity
 public class Produit {
 
-
-
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;

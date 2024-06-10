@@ -48,36 +48,25 @@ public class EnteteServiceImpl implements EnteteService {
     }
 
 
-    @Override
-    public List<EnteteVenteDTO> getAllEntetes() {
+    public List<EnteteVente> getAllEntetes() {
         List<EnteteVente> EnteteVentes = enteteRepository.findAll();
-        List<EnteteVenteDTO> EnteteVenteDTOS = EnteteVentes.stream().map(EnteteVente -> enteteMapper.entityToDto(EnteteVente)).toList();
-        return EnteteVenteDTOS;
+        return EnteteVentes;
     }
 
 
 
 
-    @Override
-    public EnteteVenteDTO getEnteteById(Long id) {
+    public EnteteVente getEnteteById(Long id) {
         EnteteVente EnteteVente = enteteRepository.findById(id).get();
-        return enteteMapper.entityToDto(EnteteVente);
+        return EnteteVente;
     }
 
 
-
-    @Override
-    public EnteteVenteDTO saveEntete(EnteteVenteDTO enteteDTO) {
-
-
-
-        EnteteVente EnteteVente = enteteMapper.dtoToEntity (enteteDTO);
-
-
+    public EnteteVente saveEntete(EnteteVente entete) {
         java.util.Date date = java.util.Date.from(now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-        EnteteVente.setDateFacture(new java.sql.Timestamp(date.getTime()));
+        entete.setDateFacture(new java.sql.Timestamp(date.getTime()));
 
-        for (DetVente detVente : EnteteVente.getDetVentes()) {
+        for (DetVente detVente : entete.getDetVentes()) {
             Optional<Produit> produitFromDb = produitRepository.findById(detVente.getProduit().getId());
             BigDecimal unitPrice = produitFromDb.get().getPrixUnitaire();
             int promotion = detVente.getPromotion();
@@ -91,29 +80,22 @@ public class EnteteServiceImpl implements EnteteService {
             DetVenteRepository.save(detVente);
         }
 
-        BigDecimal totalAmount = enteteDTO.getDetVentes().stream()
+        BigDecimal totalAmount = entete.getDetVentes().stream()
                 .filter(DetVente -> DetVente.getMontantTotalParProduit() != null)
                 .map(DetVente -> DetVente.getMontantTotalParProduit())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-
         Caisse caisse = caisseRepository.findById(1L).get();
         caisse.setTotalVentes(caisse.getTotalVentes().add(totalAmount));
-
-        System.out.println("caisse.getTotalVentes() " + caisse.getTotalVentes()) ;
-
         caisse.setDifference(caisse.getTotalVentes().subtract(caisse.getTotalEnteteAchats()));
 
-        EnteteVente.setTotalFacture(totalAmount);
-        EnteteVente = enteteRepository.save(EnteteVente);
+        entete.setTotalFacture(totalAmount);
+        entete = enteteRepository.save(entete);
 
-        return   enteteMapper.entityToDto(EnteteVente);
+        return entete;
     }
 
 
-
-
-    @Override
     public void deleteEntete(Long id) {
         enteteRepository.deleteById(id);
     }
@@ -122,8 +104,7 @@ public class EnteteServiceImpl implements EnteteService {
 
 
 
-    @Override
-    public EnteteVenteDTO updateEntete(EnteteVenteDTO enteteDTO) {
+    public EnteteVente updateEntete(EnteteVenteDTO enteteDTO) {
         EnteteVente EnteteVente = enteteRepository.findById(enteteDTO.getId()).get();
         if(EnteteVente == null) {
                 throw new RuntimeException("EnteteVente not found");
@@ -135,7 +116,7 @@ public class EnteteServiceImpl implements EnteteService {
         EnteteVente.setStatut(enteteDTO.getStatut());
         EnteteVente.setDetVentes(enteteDTO.getDetVentes());
         enteteRepository.save(EnteteVente);
-        return enteteMapper.entityToDto(EnteteVente);
+        return enteteRepository.save(EnteteVente) ;
     }
 
     @Override

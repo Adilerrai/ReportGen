@@ -6,6 +6,7 @@ import com.example.invoice.dto.EnteteRechercheDTO;
 import com.example.invoice.model.EnteteVente;
 import com.example.invoice.service.EnteteService;
 import com.example.invoice.fileGeneration.ReportService;
+import com.example.invoice.service.impl.EnteteServiceImpl;
 import com.example.invoice.service.mapper.EnteteMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,17 +15,18 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/entetes-vente")
 public class EnteteController {
-    private EnteteService enteteService;
+    private EnteteServiceImpl enteteService;
     private ReportService reportService;
     private EnteteMapper enteteMapper;
 
 
 
-    public EnteteController(EnteteService enteteService, ReportService reportService , EnteteMapper enteteMapper){
+    public EnteteController(EnteteServiceImpl enteteService, ReportService reportService , EnteteMapper enteteMapper){
         this.enteteService = enteteService;
         this.reportService = reportService;
         this.enteteMapper = enteteMapper;
@@ -33,26 +35,39 @@ public class EnteteController {
     @PostMapping("/add")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<EnteteVenteDTO> addEntete(@RequestBody EnteteVenteDTO enteteDTO) {
-        return ResponseEntity.ok(enteteService.saveEntete(enteteDTO));
+
+        EnteteVente entete = enteteMapper.dtoToEntity(enteteDTO);
+        EnteteVente entete1 = enteteService.saveEntete(entete);
+        EnteteVenteDTO enteteVenteDTO = enteteMapper.entityToDto(entete1);
+        return ResponseEntity.ok(enteteVenteDTO);
     }
 
     @PutMapping("/update")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<EnteteVenteDTO> updateEntete(@RequestBody EnteteVenteDTO enteteDTO) {
+    public ResponseEntity<EnteteVente> updateEntete(@RequestBody EnteteVenteDTO enteteDTO) {
         return ResponseEntity.ok(enteteService.updateEntete(enteteDTO));
     }
 
     @GetMapping("/all")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<EnteteVenteDTO>> getAllEntetes() {
-        return ResponseEntity.ok(enteteService.getAllEntetes());
+
+        List<EnteteVente> entetes = enteteService.getAllEntetes();
+        List<EnteteVenteDTO> enteteVenteDTOS = entetes.stream()
+                .map(entete -> enteteMapper.entityToDto(entete))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(enteteVenteDTOS);
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<EnteteVenteDTO> getEnteteById(@PathVariable Long id) {
-        return ResponseEntity.ok(enteteService.getEnteteById(id));
+        EnteteVente entete = enteteService.getEnteteById(id);
+        EnteteVenteDTO enteteDTO = enteteMapper.entityToDto(entete);
+        return ResponseEntity.ok(enteteDTO);
     }
+
+
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
